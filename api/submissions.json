@@ -1,0 +1,95 @@
+[
+  {
+    "id": "mp0zmnnuegie",
+    "name": "测试学员",
+    "phone": "13800138000",
+    "age": "22-30岁",
+    "course": "初级入门",
+    "wechat": "test_wechat",
+    "createdAt": "2026-05-11T09:16:52.170Z",
+    "source": "landing-page",
+    "status": "new"
+  },
+  {
+    "id": "mp0zp3b6afjl",
+    "name": "测试",
+    "phone": "13800138000",
+    "age": "",
+    "course": "beginner",
+    "wechat": "",
+    "createdAt": "2026-05-11T09:18:45.762Z",
+    "source": "landing-page",
+    "status": "new"
+  },
+  {
+    "id": "mp0ztic945wb",
+    "name": "local test",
+    "phone": "13900139000",
+    "age": "",
+    "course": "",
+    "wechat": "",
+    "createdAt": "2026-05-11T09:22:11.865Z",
+    "source": "landing-page",
+    "status": "new"
+  },
+  {
+    "id": "mp0ztpxrk9w6",
+    "name": "host test",
+    "phone": "13900139002",
+    "age": "",
+    "course": "",
+    "wechat": "",
+    "createdAt": "2026-05-11T09:22:21.711Z",
+    "source": "landing-page",
+    "status": "new"
+  },
+  {
+    "id": "mp0zyhwqc8c8",
+    "name": "立伟",
+    "phone": "18611148091",
+    "age": "22-30",
+    "course": "intermediate",
+    "wechat": "",
+    "createdAt": "2026-05-11T09:26:04.586Z",
+    "source": "landing-page",
+    "status": "new"
+  },
+  {
+    "id": "mp101bcf2sqp",
+    "name": "测试用户",
+    "phone": "13800138000",
+    "age": "",
+    "course": "beginner",
+    "wechat": "",
+    "message": "我想了解周末班",
+    "createdAt": "2026-05-11T09:28:16.047Z",
+    "source": "landing-page",
+    "status": "new"
+  },
+  {
+    "id": "mp101jlflyct",
+    "name": "限流A",
+    "phone": "13800138002",
+    "age": "",
+    "course": "",
+    "wechat": "",
+    "message": "",
+    "createdAt": "2026-05-11T09:28:26.739Z",
+    "source": "landing-page",
+    "status": "enrolled",
+    "updatedAt": "2026-05-11T10:37:16.382Z"
+  },
+  {
+    "id": "mp10dhsut7uo",
+    "name": "立伟",
+    "phone": "18611148091",
+    "age": "40+",
+    "course": "intermediate",
+    "wechat": "",
+    "message": "",
+    "createdAt": "2026-05-11T09:37:44.287Z",
+    "source": "landing-page",
+    "status": "closed",
+    "updatedAt": "2026-05-11T10:37:15.069Z"
+  }
+]

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高级AIGC实战全栈 — 晋谷云智 · 大同AIGC培训</title>
+<meta name="description" content="6周项目驱动实战，掌握全栈AI开发、模型微调、多模态系统架构。企业级项目实战+工信教考认证+带薪实习推荐。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="大同AIGC培训,模型微调,AI全栈开发,多模态,LoRA,企业级AI">
+<link rel="canonical" href="https://fivefirmfoundry.com/course-advanced">
+<meta property="og:title" content="高级AIGC实战全栈 — 6周项目驱动">
+<meta property="og:description" content="全栈AI项目开发与部署、模型微调(LoRA/QLoRA)、多模态系统架构。企业级项目+带薪实习+工信教考认证。">
+<meta property="og:url" content="https://fivefirmfoundry.com/course-advanced">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="晋谷云智">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%234DD499'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' font-family='sans-serif' fill='%230A0A0A' font-weight='bold'%3E晋%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org", "@type": "Course",
+  "name": "AIGC实战全栈 - 高级班",
+  "description": "6周项目驱动实战，掌握全栈AI开发、模型微调、多模态系统架构。企业级项目+带薪实习+工信教考认证。",
+  "provider": { "@type": "Organization", "name": "晋谷云智教育科技", "url": "https://fivefirmfoundry.com" },
+  "offers": { "@type": "Offer", "price": "6880", "priceCurrency": "CNY", "availability": "https://schema.org/InStock" },
+  "hasCourseInstance": {
+    "@type": "CourseInstance", "courseMode": "onsite",
+    "location": { "@type": "Place", "name": "晋谷云智实训基地", "address": { "@type": "PostalAddress", "addressLocality": "大同", "addressCountry": "CN" } },
+    "courseSchedule": { "@type": "Schedule", "duration": "P6W", "repeatFrequency": "P3M" }
+  }
+}
+</script>
+<style>
+:root { --emerald: #4DD499; --bg: #0A0A0A; }
+html { scroll-behavior: smooth; box-sizing: border-box; }
+*,*::before,*::after{box-sizing:inherit;}
+body{font-family:'Noto Sans SC',sans-serif;background:var(--bg);color:#F5F5F5;min-height:100vh;}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:#0A0A0A;}
+::-webkit-scrollbar-thumb{background:rgba(77,212,153,0.3);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(77,212,153,0.5);}
+.glass{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;backdrop-filter:blur(12px);}
+.glass-strong{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:20px;backdrop-filter:blur(20px);}
+.section-label{display:inline-block;font-size:0.7rem;font-weight:500;letter-spacing:0.15em;color:var(--emerald);text-transform:uppercase;opacity:0.7;}
+.section-title{font-family:'Cabinet Grotesk','Noto Sans SC',sans-serif;font-size:2rem;font-weight:700;line-height:1.2;}
+.section-sub{font-size:0.9rem;color:rgba(255,255,255,0.4);max-width:560px;line-height:1.7;}
+@media(max-width:768px){.section-title{font-size:1.5rem;}}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:12px;font-weight:600;font-size:0.9rem;background:linear-gradient(135deg,#4DD499,#2D8C6C);color:#0A0A0A;transition:all 0.3s;text-decoration:none;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(77,212,153,0.25);}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:12px;font-weight:600;font-size:0.85rem;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);transition:all 0.3s;text-decoration:none;}
+.btn-outline:hover{border-color:var(--emerald);color:var(--emerald);background:rgba(77,212,153,0.08);}
+.hero-section{padding-top:120px;padding-bottom:80px;position:relative;overflow:hidden;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;background:rgba(77,212,153,0.08);border:1px solid rgba(77,212,153,0.12);font-size:0.75rem;color:var(--emerald);margin-bottom:20px;}
+.hero-price{font-family:'Cabinet Grotesk',sans-serif;font-size:3rem;font-weight:900;color:var(--emerald);line-height:1;}
+.hero-price-sub{font-size:0.9rem;color:rgba(255,255,255,0.3);}
+.hero-meta{display:flex;gap:24px;flex-wrap:wrap;margin-top:16px;}
+.hero-meta-item{display:flex;align-items:center;gap:8px;font-size:0.85rem;color:rgba(255,255,255,0.5);}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+.feature-card{padding:28px 24px;border-radius:16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);transition:all 0.3s;}
+.feature-card:hover{border-color:rgba(77,212,153,0.15);background:rgba(77,212,153,0.03);}
+.feature-icon{width:44px;height:44px;border-radius:12px;background:rgba(77,212,153,0.08);border:1px solid rgba(77,212,153,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.feature-icon i{font-size:1.3rem;color:var(--emerald);}
+.feature-title{font-weight:600;font-size:1rem;margin-bottom:8px;}
+.feature-desc{font-size:0.8rem;color:rgba(255,255,255,0.4);line-height:1.6;}
+.stat-item{text-align:center;padding:24px;}
+.stat-number{font-family:'Cabinet Grotesk',sans-serif;font-size:2.5rem;font-weight:700;color:var(--emerald);line-height:1;}
+.stat-label{font-size:0.8rem;color:rgba(255,255,255,0.4);margin-top:6px;}
+.nav-bar{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:rgba(10,10,10,0.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.04);}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Cabinet Grotesk','Noto Sans SC',sans-serif;font-weight:800;font-size:1.1rem;color:#F5F5F5;text-decoration:none;display:flex;align-items:center;gap:8px;}
+.nav-logo-img { height: 42px; width: auto; display: block; }
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{font-size:0.8rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--emerald);}
+.review-card{padding:24px;border-radius:16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);}
+.review-stars{color:#f0b400;font-size:0.85rem;margin-bottom:12px;}
+.review-text{font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:16px;}
+.review-author{display:flex;align-items:center;gap:12px;}
+.review-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#4DD499,#2D8C6C);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;color:#0A0A0A;}
+.review-name{font-size:0.8rem;font-weight:600;}
+.review-role{font-size:0.7rem;color:rgba(255,255,255,0.3);}
+.cta-section{background:linear-gradient(135deg,rgba(77,212,153,0.06),rgba(45,140,108,0.03));border:1px solid rgba(77,212,153,0.1);border-radius:24px;padding:48px;text-align:center;}
+.faq-item{border-bottom:1px solid rgba(255,255,255,0.04);}
+.faq-question{width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 0;background:none;border:none;color:rgba(255,255,255,0.8);font-size:0.95rem;font-weight:500;cursor:pointer;text-align:left;transition:color 0.2s;font-family:inherit;}
+.faq-question:hover{color:var(--emerald);}
+.faq-question i{transition:transform 0.3s;font-size:1.1rem;color:rgba(255,255,255,0.3);flex-shrink:0;margin-left:16px;}
+.faq-question.open i{transform:rotate(45deg);color:var(--emerald);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.35s ease;padding:0 20px 0 0;}
+.faq-answer.open{max-height:500px;padding-bottom:20px;}
+.faq-answer p{font-size:0.85rem;color:rgba(255,255,255,0.45);line-height:1.8;}
+.footer{border-top:1px solid rgba(255,255,255,0.04);padding:40px 0 24px;margin-top:80px;}
+.footer a{color:rgba(255,255,255,0.3);text-decoration:none;font-size:0.8rem;transition:color 0.2s;}
+.footer a:hover{color:var(--emerald);}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.toast-container{position:fixed;top:80px;right:24px;z-index:999;display:flex;flex-direction:column;gap:8px;}
+.toast{padding:14px 20px;border-radius:12px;background:rgba(10,10,10,0.9);border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(12px);display:flex;align-items:center;gap:10px;font-size:0.85rem;color:#F5F5F5;transform:translateX(120%);transition:transform 0.4s cubic-bezier(0.22,1,0.36,1);max-width:380px;}
+.toast.show{transform:translateX(0);}
+.toast.success{border-color:rgba(77,212,153,0.3);}
+.toast.error{border-color:rgba(239,68,68,0.3);}
+.toast i{font-size:1.2rem;flex-shrink:0;}
+.toast.success i{color:var(--emerald);}.toast.error i{color:#ef4444;}
+@media(max-width:768px){.toast-container{left:16px;right:16px;}.toast{max-width:100%;}}
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,#4DD499,#2D8C6C);z-index:101;width:0%;transition:width 0.1s linear;}
+.sticky-phone{display:none;position:fixed;bottom:24px;left:24px;z-index:99;padding:12px 20px;border-radius:50px;background:rgba(10,10,10,0.85);backdrop-filter:blur(12px);border:1px solid rgba(77,212,153,0.2);color:var(--emerald);text-decoration:none;font-weight:600;font-size:0.85rem;align-items:center;gap:8px;animation:phonePulse 2s ease-in-out infinite;}
+@keyframes phonePulse{0%,100%{box-shadow:0 0 0 0 rgba(77,212,153,0.2);}50%{box-shadow:0 0 0 8px rgba(77,212,153,0);}}
+@media(max-width:768px){.sticky-phone{display:flex;}}
+.field-error{display:flex;align-items:center;gap:4px;margin-top:4px;font-size:0.75rem;color:#ef4444;opacity:0;max-height:0;transition:opacity 0.3s,max-height 0.3s;overflow:hidden;}
+.field-error.show{opacity:1;max-height:30px;}
+.field-error.valid{color:#4DD499;}
+input.error{border-color:rgba(239,68,68,0.4)!important;}
+input.valid{border-color:rgba(77,212,153,0.4)!important;}
+.back-to-top{position:fixed;bottom:24px;right:24px;z-index:99;width:44px;height:44px;border-radius:12px;background:rgba(10,10,10,0.8);border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);cursor:pointer;opacity:0;transform:translateY(20px);transition:all 0.3s;}
+.back-to-top.visible{opacity:1;transform:translateY(0);}
+.back-to-top:hover{border-color:var(--emerald);color:var(--emerald);}
+@media(max-width:768px){.back-to-top{width:36px;height:36px;bottom:80px;}}
+.nav-bar.scrolled{box-shadow:0 4px 20px rgba(0,0,0,0.3);}
+.week-card{padding:24px;border-radius:16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);}
+.week-card .week-num{font-family:'Cabinet Grotesk',sans-serif;font-size:2rem;font-weight:900;color:rgba(77,212,153,0.15);line-height:1;}
+.week-card h3{font-weight:700;font-size:1.05rem;margin:8px 0;}
+.week-card p{font-size:0.8rem;color:rgba(255,255,255,0.45);line-height:1.6;}
+.week-card ul{margin-top:10px;}
+.week-card ul li{font-size:0.8rem;color:rgba(255,255,255,0.5);padding:4px 0;display:flex;align-items:center;gap:8px;}
+.week-card ul li i{color:var(--emerald);font-size:0.7rem;}
+.week-card.highlight{border-color:rgba(240,180,0,0.15);background:rgba(240,180,0,0.02);}
+.week-card.highlight .week-num{color:rgba(240,180,0,0.2);}
+.badge-green{font-size:0.6rem;padding:2px 10px;border-radius:20px;background:rgba(77,212,153,0.1);color:var(--emerald);white-space:nowrap;display:inline-block;}
+.badge-gold{font-size:0.6rem;padding:2px 10px;border-radius:20px;background:rgba(240,180,0,0.1);color:#f0b400;white-space:nowrap;display:inline-block;}
+.employment-card{display:flex;gap:16px;padding:20px;border-radius:16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);align-items:flex-start;}
+.employment-icon{width:48px;height:48px;border-radius:12px;background:rgba(77,212,153,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.employment-icon i{font-size:1.4rem;color:var(--emerald);}
+.employment-title{font-weight:600;font-size:0.95rem;}
+.employment-desc{font-size:0.8rem;color:rgba(255,255,255,0.4);margin-top:4px;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="toast-container" id="toastContainer"></div>
+
+<nav class="nav-bar" id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><img src="/logo.png" alt="晋谷云智" class="nav-logo-img"></a>
+    <div class="nav-links">
+      <a href="/#courses">课程</a>
+      <a href="/showcase.html">作品</a>
+      <a href="/teachers.html">师资</a>
+      <a href="/schedule.html">排期</a>
+      <a href="#trial" class="btn-outline" style="padding:8px 18px;">免费试听</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero-section" style="background: radial-gradient(ellipse at 50% 0%, rgba(77,212,153,0.08), transparent 60%);">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="hero-badge reveal"><i class="ph ph-asterisk"></i> 旗舰课程 · 就业直通车</div>
+        <h1 class="text-4xl lg:text-5xl font-bold leading-tight reveal" style="font-family:'Cabinet Grotesk','Noto Sans SC',sans-serif;">
+          AIGC 全栈实战<br><span class="text-[var(--emerald)]">高级研修</span>
+        </h1>
+        <p class="text-lg text-[rgba(255,255,255,0.45)] mt-4 leading-relaxed reveal">
+          6周项目驱动，从开发到部署完整闭环。<br>
+          模型微调 + 多模态系统 + 企业级项目 + 3个月带薪实习推荐。
+        </p>
+        <div class="hero-meta reveal">
+          <div class="hero-meta-item"><i class="ph ph-clock text-[var(--emerald)]"></i> 6周 · 项目驱动</div>
+          <div class="hero-meta-item"><i class="ph ph-rocket text-[var(--emerald)]"></i> 结业获工信教考证书</div>
+          <div class="hero-meta-item"><i class="ph ph-briefcase text-[var(--emerald)]"></i> 3个月带薪实习</div>
+        </div>
+        <div class="flex items-end gap-6 mt-8 reveal">
+          <div>
+            <div class="hero-price">¥6,880</div>
+            <div class="hero-price-sub">含全部资料+工位+实习推荐</div>
+          </div>
+          <a href="#trial" class="btn-primary" style="white-space:nowrap;"><i class="ph ph-pencil-line"></i> 预约试听</a>
+          <a href="#syllabus" class="btn-outline" style="white-space:nowrap;">查看课表</a>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="glass-strong p-1" style="background: linear-gradient(135deg, rgba(77,212,153,0.2), transparent);">
+          <div class="rounded-[18px] overflow-hidden" style="background: rgba(255,255,255,0.02);">
+            <div style="padding:32px 28px;">
+              <div class="text-xs font-medium text-[rgba(255,255,255,0.3)] tracking-widest mb-6">课程速览</div>
+              <div class="grid grid-cols-2 gap-6">
+                <div><div class="text-2xl font-bold font-display" style="font-family:'Cabinet Grotesk',sans-serif;">180</div><div class="text-xs text-[rgba(255,255,255,0.3)] mt-1">总课时</div></div>
+                <div><div class="text-2xl font-bold font-display" style="font-family:'Cabinet Grotesk',sans-serif;">6</div><div class="text-xs text-[rgba(255,255,255,0.3)] mt-1">完整实战项目</div></div>
+                <div><div class="text-2xl font-bold font-display" style="font-family:'Cabinet Grotesk',sans-serif;">3</div><div class="text-xs text-[rgba(255,255,255,0.3)] mt-1">月带薪实习</div></div>
+                <div><div class="text-2xl font-bold font-display" style="font-family:'Cabinet Grotesk',sans-serif;">✓</div><div class="text-xs text-[rgba(255,255,255,0.3)] mt-1">工信教考认证</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 glass p-4">
+          <div class="flex items-center gap-4 text-sm">
+            <i class="ph ph-suitcase text-[var(--emerald)] text-xl"></i>
+            <div><span class="text-[rgba(255,255,255,0.7)] font-medium">就业保障</span><br><span class="text-[rgba(255,255,255,0.4)] text-xs">50+合作企业定向招聘，优秀学员结业即入职</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="py-10">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="grid grid-cols-3 md:grid-cols-5 gap-4">
+      <div class="stat-item reveal"><div class="stat-number" data-target="40">0</div><div class="stat-label">高级班学员累计</div></div>
+      <div class="stat-item reveal"><div class="stat-number" data-target="97">0</div><div class="stat-label">通过率 %</div></div>
+      <div class="stat-item reveal"><div class="stat-number" data-target="6">0</div><div class="stat-label">周冲刺</div></div>
+      <div class="stat-item reveal"><div class="stat-number" data-target="50">0</div><div class="stat-label">合作企业</div></div>
+      <div class="stat-item reveal"><div class="stat-number" data-target="91">0</div><div class="stat-label">就业率 %</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Overview -->
+<section class="py-16">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="mb-12 reveal">
+      <span class="section-label">课程概览</span>
+      <h2 class="section-title mt-1">这门课适合谁</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="ph ph-code"></i></div>
+        <div class="feature-title">中级班结业学员</div>
+        <div class="feature-desc">已完成中级课程，想要进入AI应用开发、模型微调等更深领域。连报学员占比超35%。</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="ph ph-brackets-square"></i></div>
+        <div class="feature-title">有编程基础的开发者</div>
+        <div class="feature-desc">有Python/web基础，想转AI方向。6周帮你建立从模型到应用部署的完整能力栈。</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="ph ph-suitcase"></i></div>
+        <div class="feature-title">企业技术负责人</div>
+        <div class="feature-desc">负责团队AI转型，需要深度理解AI技术栈的技术决策者。自己先跑通全栈再带团队落地。</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="ph ph-rocket-launch"></i></div>
+        <div class="feature-title">AI创业者/独立开发者</div>
+        <div class="feature-desc">想自己构建AI产品但缺乏技术能力。从模型选择调优到应用部署上线，全流程实战。</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="ph ph-graduation-cap"></i></div>
+        <div class="feature-title">高校计算机类学生</div>
+        <div class="feature-desc">学校教的理论多、实战少。6周补上企业需要的AI工程能力，毕业前拿到硬通货证书+项目作品。</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="ph ph-arrows-left-right"></i></div>
+        <div class="feature-title">正在职业转型的IT从业者</div>
+        <div class="feature-desc">前端/后端/运维想切AI赛道。高级班+3个月带薪实习是一套完整的转型加速器。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Learning objectives -->
+<section class="py-16" style="background: radial-gradient(ellipse at 50% 50%, rgba(77,212,153,0.02), transparent 60%);">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="mb-12 reveal">
+      <span class="section-label">学习目标</span>
+      <h2 class="section-title mt-1">6周后，你将带走什么</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass p-6 reveal">
+        <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:2.5rem;font-weight:900;color:rgba(77,212,153,0.15);line-height:1;">01</div>
+        <h3 class="text-lg font-bold mt-2">模型微调实战能力</h3>
+        <p class="text-sm text-[rgba(255,255,255,0.45)] mt-2 leading-relaxed">掌握LoRA/QLoRA微调完整流程：数据准备、配置调参、训练监控、模型导出部署。能独立完成垂直领域模型定制。</p>
+      </div>
+      <div class="glass p-6 reveal">
+        <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:2.5rem;font-weight:900;color:rgba(77,212,153,0.15);line-height:1;">02</div>
+        <h3 class="text-lg font-bold mt-2">多模态系统架构</h3>
+        <p class="text-sm text-[rgba(255,255,255,0.45)] mt-2 leading-relaxed">理解并搭建多模态AI系统：文本+图像+视频+语音的联合处理、RAG+多模态检索、Agent+多工具编排。</p>
+      </div>
+      <div class="glass p-6 reveal">
+        <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:2.5rem;font-weight:900;color:rgba(77,212,153,0.15);line-height:1;">03</div>
+        <h3 class="text-lg font-bold mt-2">企业级项目 + 实习</h3>
+        <p class="text-sm text-[rgba(255,255,255,0.45)] mt-2 leading-relaxed">完成一个全栈AI项目：从需求分析到开发部署全流程。对接合作企业实习面试，优秀学员直接录用。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Syllabus -->
+<section id="syllabus" class="py-16">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="mb-12 reveal">
+      <span class="section-label">完整大纲</span>
+      <h2 class="section-title mt-1">6周 · 每周主题</h2>
+      <p class="section-sub mt-3">每周一至周五 09:00-17:00，周六项目实验室开放</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="week-card reveal">
+        <div class="week-num">01</div>
+        <h3>企业级AI应用开发</h3>
+        <p>从API调用到微服务部署的完整工程化实践</p>
+        <ul>
+          <li><i class="ph ph-circle-fill"></i>Python工程化 + FastAPI + 异步编程</li>
+          <li><i class="ph ph-circle-fill"></i>LLM API封装、多模型路由、负载均衡</li>
+          <li><i class="ph ph-circle-fill"></i>Prompt管理系统 + 安全/合规/内容过滤</li>
+          <li><i class="ph ph-circle-fill"></i>项目：企业智能助手API服务</li>
+        </ul>
+        <span class="badge-green mt-3 inline-block">第1周</span>
+      </div>
+
+      <div class="week-card reveal">
+        <div class="week-num">02</div>
+        <h3>模型微调实战</h3>
+        <p>LoRA/QLoRA从数据到部署完整流程</p>
+        <ul>
+          <li><i class="ph ph-circle-fill"></i>数据集构建：爬取/标注/清洗/增强</li>
+          <li><i class="ph ph-circle-fill"></i>LoRA微调：Unsloth/TRL配置与训练</li>
+          <li><i class="ph ph-circle-fill"></i>训练监控：WandB日志、损失曲线分析</li>
+          <li><i class="ph ph-circle-fill"></i>项目：垂直领域对话模型微调</li>
+        </ul>
+        <span class="badge-green mt-3 inline-block">第2周</span>
+      </div>
+
+      <div class="week-card reveal">
+        <div class="week-num">03</div>
+        <h3>多模态系统架构</h3>
+        <p>文本+图像+视频+语音的融合处理系统</p>
+        <ul>
+          <li><i class="ph ph-circle-fill"></i>多模态模型：LLaVA/CLIP/Whisper集成</li>
+          <li><i class="ph ph-circle-fill"></i>多模态RAG：图文混合检索系统</li>
+          <li><i class="ph ph-circle-fill"></i>AI视频处理管线：转写+理解+生成</li>
+          <li><i class="ph ph-circle-fill"></i>项目：多模态内容分析平台</li>
+        </ul>
+        <span class="badge-green mt-3 inline-block">第3周</span>
+      </div>
+
+      <div class="week-card reveal">
+        <div class="week-num">04</div>
+        <h3>AI视频与3D内容生产</h3>
+        <p>AIGC视频生成、3D资产创建管线</p>
+        <ul>
+          <li><i class="ph ph-circle-fill"></i>ComfyUI高级工作流：视频生成全链路</li>
+          <li><i class="ph ph-circle-fill"></i>AI视频后期：帧插值/超分/风格迁移</li>
+          <li><i class="ph ph-circle-fill"></i>3D生成：Text-to-3D/Image-to-3D管线</li>
+          <li><i class="ph ph-circle-fill"></i>项目：AI短片/3D资产管线搭建</li>
+        </ul>
+        <span class="badge-green mt-3 inline-block">第4周</span>
+      </div>
+
+      <div class="week-card highlight reveal">
+        <div class="week-num">05</div>
+        <h3>综合项目开发</h3>
+        <p>团队协作完成一个完整的AI产品</p>
+        <ul>
+          <li><i class="ph ph-circle-fill"></i>项目选题评审 + 产品需求文档</li>
+          <li><i class="ph ph-circle-fill"></i>前后端开发 + 模型集成 + API封装</li>
+          <li><i class="ph ph-circle-fill"></i>测试 + CI/CD + Docker部署</li>
+          <li><i class="ph ph-circle-fill"></i>导师每天Code Review + 方向把控</li>
+        </ul>
+        <span class="badge-gold mt-3 inline-block">综合大项目</span>
+      </div>
+
+      <div class="week-card highlight reveal">
+        <div class="week-num">06</div>
+        <h3>项目展示 + 就业对接</h3>
+        <p>产品发布 + 实习面试 + 职业规划</p>
+        <ul>
+          <li><i class="ph ph-circle-fill"></i>最终产品发布会 + 投资人评审</li>
+          <li><i class="ph ph-circle-fill"></i>工信教考认证考试</li>
+          <li><i class="ph ph-circle-fill"></i>合作企业路演 + 现场面试</li>
+          <li><i class="ph ph-circle-fill"></i>职业规划 + 3个月带薪实习分配</li>
+        </ul>
+        <span class="badge-gold mt-3 inline-block">就业对接</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Employment -->
+<section class="py-16" style="background: radial-gradient(ellipse at 50% 50%, rgba(77,212,153,0.02), transparent 60%);">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="mb-12 reveal">
+      <span class="section-label">就业保障</span>
+      <h2 class="section-title mt-1">不只是培训，更是职业加速器</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5">
+      <div class="employment-card reveal">
+        <div class="employment-icon"><i class="ph ph-buildings"></i></div>
+        <div><div class="employment-title">50+ 合作企业</div><div class="employment-desc">覆盖大同及周边城市的设计公司、广告传媒、科技企业、电商公司。部分企业直接来班上现场招聘。</div></div>
+      </div>
+      <div class="employment-card reveal">
+        <div class="employment-icon"><i class="ph ph-clock-countdown"></i></div>
+        <div><div class="employment-title">3个月带薪实习</div><div class="employment-desc">高级班学员结业后安排进入合作企业带薪实习，资深老师全程跟进指导，实习工资覆盖学费。</div></div>
+      </div>
+      <div class="employment-card reveal">
+        <div class="employment-icon"><i class="ph ph-map-trifold"></i></div>
+        <div><div class="employment-title">定向推荐</div><div class="employment-desc">结业前完成3-5家意向企业面试推荐，优秀学员可直接入职。企业直招，跳过海投简历阶段。</div></div>
+      </div>
+      <div class="employment-card reveal">
+        <div class="employment-icon"><i class="ph ph-user-list"></i></div>
+        <div><div class="employment-title">职业规划服务</div><div class="employment-desc">结业前进行一对一职业规划：简历优化、面试模拟、薪资谈判指导、长期成长路径建议。</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Certificate -->
+<section class="py-16">
+  <div class="max-w-4xl mx-auto px-6 lg:px-10">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal">
+        <span class="section-label">权威认证</span>
+        <h2 class="section-title mt-1">工信部教考中心认证</h2>
+        <p class="text-sm text-[rgba(255,255,255,0.5)] mt-4 leading-relaxed">
+          全部课程结业后可报名参加 <strong class="text-[rgba(255,255,255,0.8)]">工业和信息化部教育与考试中心</strong> 
+          的「AIGC应用工程师」认证考试。证书全国通用，官网可查。
+        </p>
+        <ul class="mt-6 space-y-3">
+          <li class="flex items-center gap-3 text-sm text-[rgba(255,255,255,0.5)]"><i class="ph ph-check-circle text-[var(--emerald)]"></i> 工信部教考中心统一印制、颁发</li>
+          <li class="flex items-center gap-3 text-sm text-[rgba(255,255,255,0.5)]"><i class="ph ph-check-circle text-[var(--emerald)]"></i> 证书编号全国唯一，官网可查</li>
+          <li class="flex items-center gap-3 text-sm text-[rgba(255,255,255,0.5)]"><i class="ph ph-check-circle text-[var(--emerald)]"></i> 高级证书 = AIGC应用工程师（高级）</li>
+        </ul>
+        <a href="#trial" class="btn-outline mt-6">了解更多认证信息</a>
+      </div>
+      <div class="flex justify-center reveal">
+        <div class="glass-strong p-1" style="background: linear-gradient(135deg, rgba(77,212,153,0.15), transparent); border-radius: 20px;">
+          <div style="padding:24px; border-radius:18px; background: rgba(255,255,255,0.02); text-align:center;">
+            <div style="width:180px; height:240px; margin:0 auto; border-radius:12px; background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(77,212,153,0.05)); border: 1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px;">
+              <i class="ph ph-certificate text-5xl text-[var(--emerald)]" style="opacity:0.6;"></i>
+              <span class="text-xs text-[rgba(255,255,255,0.3)]">AIGC应用工程师</span>
+              <span class="text-[0.55rem] text-[rgba(255,255,255,0.2)]">工信教考 · 高级</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="py-16" style="background: radial-gradient(ellipse at 50% 50%, rgba(77,212,153,0.02), transparent 60%);">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="mb-12 reveal">
+      <span class="section-label">学员评价</span>
+      <h2 class="section-title mt-1">高级班学员怎么说</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5">
+      <div class="review-card reveal"><div class="review-stars"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div><div class="review-text">"中级班上完犹豫了三个月，最终决定报高级班。太值了——模型微调那部分直接让我面试时跟技术总监聊了半小时，当场拿了offer。"</div><div class="review-author"><div class="review-avatar">孙</div><div><div class="review-name">孙同学</div><div class="review-role">AI工程师 · 北京</div></div></div></div>
+      <div class="review-card reveal"><div class="review-stars"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div><div class="review-text">"自己是一家传统制造企业想转AI，之前试过自学浪费了大半年。高级班6周顶我自己摸索一年，带薪实习直接进了一家AI公司，现在带队做项目了。"</div><div class="review-author"><div class="review-avatar">赵</div><div><div class="review-name">赵总</div><div class="review-role">企业创始人 · 张家口</div></div></div></div>
+      <div class="review-card reveal"><div class="review-stars"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div><div class="review-text">"计算机专业毕业的，在学校学过ML基础但完全不知道企业怎么用AI。高级班的综合项目让我第一次完整走了一遍从需求到上线的流程，面试时候这个项目救了我。"</div><div class="review-author"><div class="review-avatar">周</div><div><div class="review-name">周同学</div><div class="review-role">应届毕业生 · 大同</div></div></div></div>
+      <div class="review-card reveal"><div class="review-stars"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div><div class="review-text">"从互联网大厂离职后本来打算创业，先来充个电。结果项目阶段做的AI工具直接被投资人看中，现在已经拿到天使轮了。这学费花得太值了。"</div><div class="review-author"><div class="review-avatar">杨</div><div><div class="review-name">杨先生</div><div class="review-role">创业者 · 成都</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-16">
+  <div class="max-w-3xl mx-auto px-6 lg:px-10">
+    <div class="mb-10 reveal">
+      <span class="section-label">常见问题</span>
+      <h2 class="section-title mt-1">关于高级班</h2>
+    </div>
+    <div class="space-y-0 reveal">
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">需要什么基础？<i class="ph ph-plus"></i></button><div class="faq-answer"><p class="text-sm text-[rgba(255,255,255,0.45)] leading-relaxed">需要有一定编程基础（至少Python基础语法），或完成中级班课程。零编程基础不建议直接报高级班，建议先从中级或初级开始。</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">6周是全职上课吗？<i class="ph ph-plus"></i></button><div class="faq-answer"><p class="text-sm text-[rgba(255,255,255,0.45)] leading-relaxed">是的，周一至周五 09:00-17:00 全职到教室上课。周六项目实验室开放（可选）。6周全程高强度实训，不适合在职兼职学习。</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">带薪实习是真的吗？<i class="ph ph-plus"></i></button><div class="faq-answer"><p class="text-sm text-[rgba(255,255,255,0.45)] leading-relaxed">是真的。我们与50+合作企业签订了人才输送协议，高级班学员结业后安排3个月带薪实习，实习工资根据企业标准发放（通常¥3,000-6,000/月），部分优秀学员实习期结束直接转正。</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">学完能做项目经理或架构师吗？<i class="ph ph-plus"></i></button><div class="faq-answer"><p class="text-sm text-[rgba(255,255,255,0.45)] leading-relaxed">高级班的定位是"独立负责AI项目全流程"，而不是纯管理层。毕业学员能自主完成从需求分析到模型训练到部署上线的全流程，具备独立带项目的能力。</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">学费可以分期吗？<i class="ph ph-plus"></i></button><div class="faq-answer"><p class="text-sm text-[rgba(255,255,255,0.45)] leading-relaxed">可以。支持3期/6期免息分期。具体方案请通过下方表单咨询，顾问会详细介绍。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="trial" class="py-16">
+  <div class="max-w-4xl mx-auto px-6 lg:px-10">
+    <div class="cta-section reveal">
+      <h2 class="text-2xl lg:text-3xl font-bold" style="font-family:'Cabinet Grotesk','Noto Sans SC',sans-serif;">预约一对一定制咨询</h2>
+      <p class="mt-3 text-sm text-[rgba(255,255,255,0.5)] max-w-lg mx-auto">不清楚自己是否够资格？预约顾问一对一评估，给你定制学习路径建议。</p>
+      <div class="mt-8 max-w-md mx-auto">
+        <form id="trialForm" class="space-y-4">
+          <input type="text" name="name" id="trialName" placeholder="你的名字" required class="w-full px-4 py-3 rounded-xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] text-white text-sm outline-none transition-all focus:border-[var(--emerald)] focus:bg-[rgba(77,212,153,0.04)]" style="font-family:inherit;">
+          <input type="tel" name="phone" id="trialPhone" placeholder="手机号" required class="w-full px-4 py-3 rounded-xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] text-white text-sm outline-none transition-all focus:border-[var(--emerald)] focus:bg-[rgba(77,212,153,0.04)]" style="font-family:inherit;">
+          <input type="hidden" name="course" value="高级实战">
+          <button type="submit" class="btn-primary w-full justify-center text-base py-4"><i class="ph ph-pencil-line"></i> 预约一对一咨询</button>
+        </form>
+        <p class="mt-3 text-xs text-[rgba(255,255,255,0.25)]">提交后24小时内专属顾问联系你 · 咨询不收费</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="grid md:grid-cols-3 gap-8">
+      <div><div class="flex items-center gap-2"><img src="/logo.png" alt="晋谷云智" style="height:42px;width:auto;"></div><p class="text-xs text-[rgba(255,255,255,0.3)] mt-2">大同AIGC实战培训先行者</p></div>
+      <div><p class="text-xs font-semibold text-[rgba(255,255,255,0.3)] tracking-widest mb-3">快速链接</p><div class="flex flex-col gap-2"><a href="/">首页</a><a href="/showcase.html">学员作品</a><a href="/teachers.html">师资团队</a><a href="/course-beginner.html">初级课程</a><a href="/course-intermediate.html">中级课程</a><a href="/course-advanced.html">高级课程</a></div></div>
+      <div><p class="text-xs font-semibold text-[rgba(255,255,255,0.3)] tracking-widest mb-3">联系方式</p><p class="text-xs text-[rgba(255,255,255,0.4)]">电话：<a href="tel:17319059750" class="text-[var(--emerald)]">173-1905-9750</a></p><p class="text-xs text-[rgba(255,255,255,0.4)] mt-1">地址：山西省大同市</p></div>
+    </div>
+    <div class="mt-10 pt-6 border-t border-[rgba(255,255,255,0.04)] text-center"><p class="text-xs text-[rgba(255,255,255,0.2)]">&copy; 2026 晋谷云智教育科技 · All rights reserved</p></div>
+  </div>
+</footer>
+
+<div class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ph ph-arrow-up"></i></div>
+<a href="tel:17319059750" class="sticky-phone"><i class="ph ph-phone-call"></i> 致电咨询</a>
+
+<script>
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('scrollProgress').style.width=h>0?(window.scrollY/h*100)+'%':'0%';document.getElementById('backToTop').classList.toggle('visible',window.scrollY>300);document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);});
+var observer=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el);});
+var counted=false;
+var countObserver=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting&&!counted){counted=true;document.querySelectorAll('.stat-number').forEach(function(el){var match=el.textContent.trim().match(/^([\d.]+)([+%]?)$/);if(!match)return;var target=parseFloat(match[1]),suffix=match[2]||'',start=performance.now();function step(now){var p=Math.min((now-start)/1200,1);var eased=1-Math.pow(1-p,3);el.textContent=Math.round(eased*target)+suffix;if(p<1)requestAnimationFrame(step);else el.textContent=target+suffix;}requestAnimationFrame(step);});}});},{threshold:0.3});
+document.querySelectorAll('.stat-item').forEach(function(el){countObserver.observe(el);});
+function toggleFaq(btn){var answer=btn.nextElementSibling;var isOpen=answer.classList.contains('open');document.querySelectorAll('.faq-answer.open,.faq-question.open').forEach(function(el){el.classList.remove('open');});if(!isOpen){answer.classList.add('open');btn.classList.add('open');}}
+function validateField(input){var container=input.parentElement;var error=container.querySelector('.field-error')||(function(){var d=document.createElement('div');d.className='field-error';d.innerHTML='<i class=\"ph ph-warning-circle\"></i><span></span>';container.appendChild(d);return d;})();var span=error.querySelector('span');if(input.value.trim()===''){error.classList.remove('show','valid');input.classList.remove('error','valid');return true;}if(input.name==='name'&&input.value.trim().length<2){span.textContent='请输入真实姓名（至少2个字）';error.classList.add('show');error.classList.remove('valid');input.classList.add('error');input.classList.remove('valid');return false;}if(input.name==='phone'||input.id==='trialPhone'){if(!/^1[3-9]\d{9}$/.test(input.value.trim())){span.textContent='请输入正确手机号（11位）';error.classList.add('show');error.classList.remove('valid');input.classList.add('error');input.classList.remove('valid');return false;}}error.classList.add('show','valid');input.classList.add('valid');input.classList.remove('error');span.textContent='格式正确';return true;}
+document.querySelectorAll('#trialForm input:not([type=hidden])').forEach(function(input){input.addEventListener('blur',function(){validateField(this);});input.addEventListener('input',function(){if(this.classList.contains('error')||this.classList.contains('valid'))validateField(this);});});
+document.getElementById('trialForm').addEventListener('submit',function(e){e.preventDefault();var valid=true;document.querySelectorAll('#trialForm input:not([type=hidden])').forEach(function(input){if(!validateField(input))valid=false;});if(!valid)return;var btn=this.querySelector('button[type=submit]');btn.disabled=true;btn.innerHTML='<i class=\"ph ph-spinner-gap animate-spin\"></i> 提交中...';var formData=new FormData(this);fetch('/api/trial',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:formData.get('name'),phone:formData.get('phone'),course:'高级实战'})}).then(function(r){return r.json();}).then(function(res){showToast(res.success?'提交成功！顾问将在24h内联系你':'提交失败：'+res.message,res.success?'success':'error');if(res.success)document.getElementById('trialForm').reset();}).catch(function(){showToast('网络异常，请稍后重试','error');}).finally(function(){btn.disabled=false;btn.innerHTML='<i class=\"ph ph-pencil-line\"></i> 预约一对一咨询';});});
+function showToast(msg,type){var container=document.getElementById('toastContainer');var t=document.createElement('div');t.className='toast '+(type||'success');t.innerHTML='<i class=\"ph '+(type==='error'?'ph-x-circle':'ph-check-circle')+'\"></i>'+msg;container.appendChild(t);setTimeout(function(){t.classList.add('show');},10);setTimeout(function(){t.classList.remove('show');setTimeout(function(){t.remove();},400);},4000);}
+</script>
+</body>
+</html>

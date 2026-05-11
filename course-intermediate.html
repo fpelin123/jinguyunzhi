@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中级AIGC进阶实战 — 晋谷云智 · 大同AIGC培训</title>
+<meta name="description" content="10天密集实训，掌握ComfyUI工作流搭建、LangChain应用开发、RAG与AI Agent。需基础AI使用经验，工信教考认证。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="大同AIGC培训,ComfyUI培训,LangChain,RAG,AI Agent,AIGC进阶">
+<link rel="canonical" href="https://fivefirmfoundry.com/course-intermediate">
+<meta property="og:title" content="中级AIGC进阶实战 — 10天密集实训">
+<meta property="og:description" content="从会用AI到会搭AI工作流。ComfyUI节点编辑、LangChain应用、RAG系统、AI Agent开发。工信教考认证。">
+<meta property="og:url" content="https://fivefirmfoundry.com/course-intermediate">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="晋谷云智">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%234DD499'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' font-family='sans-serif' fill='%230A0A0A' font-weight='bold'%3E晋%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "AIGC进阶实战 - 中级班",
+  "description": "10天密集实训，掌握ComfyUI工作流搭建、LangChain应用开发、RAG与AI Agent。需基础AI使用经验。",
+  "provider": { "@type": "Organization", "name": "晋谷云智教育科技", "url": "https://fivefirmfoundry.com" },
+  "offers": { "@type": "Offer", "price": "3680", "priceCurrency": "CNY", "availability": "https://schema.org/InStock" },
+  "hasCourseInstance": {
+    "@type": "CourseInstance", "courseMode": "onsite",
+    "location": { "@type": "Place", "name": "晋谷云智实训基地", "address": { "@type": "PostalAddress", "addressLocality": "大同", "addressCountry": "CN" } },
+    "courseSchedule": { "@type": "Schedule", "duration": "P10D", "repeatFrequency": "P2M" }
+  }
+}
+</script>
+<style>
+:root { --emerald: #4DD499; --bg: #0A0A0A; }
+html { scroll-behavior: smooth; box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body { font-family: 'Noto Sans SC', sans-serif; background: var(--bg); color: #F5F5F5; min-height: 100vh; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0A0A0A; }
+::-webkit-scrollbar-thumb { background: rgba(77,212,153,0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(77,212,153,0.5); }
+.glass { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; backdrop-filter: blur(12px); }
+.glass-strong { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; backdrop-filter: blur(20px); }
+.spotlight-card { border-radius: 20px; position: relative; }
+.spotlight-card .doppel-outer { border-radius: 20px; padding: 2px; background: rgba(255,255,255,0.04); transition: background 0.3s; }
+.spotlight-card .doppel-inner { border-radius: 18px; padding: 24px 28px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); transition: all 0.3s; }
+.spotlight-card:hover .doppel-outer { background: linear-gradient(135deg, rgba(77,212,153,0.2), transparent); }
+.spotlight-card:hover .doppel-inner { border-color: rgba(77,212,153,0.15); background: rgba(255,255,255,0.04); }
+.section-label { display: inline-block; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em; color: var(--emerald); text-transform: uppercase; opacity: 0.7; }
+.section-title { font-family: 'Cabinet Grotesk','Noto Sans SC',sans-serif; font-size: 2rem; font-weight: 700; line-height: 1.2; }
+.section-sub { font-size: 0.9rem; color: rgba(255,255,255,0.4); max-width: 560px; line-height: 1.7; }
+@media (max-width: 768px) { .section-title { font-size: 1.5rem; } }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 12px; font-weight: 600; font-size: 0.9rem; background: linear-gradient(135deg, #4DD499, #2D8C6C); color: #0A0A0A; transition: all 0.3s; text-decoration: none; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(77,212,153,0.25); }
+.btn-outline { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 12px; font-weight: 600; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); transition: all 0.3s; text-decoration: none; }
+.btn-outline:hover { border-color: var(--emerald); color: var(--emerald); background: rgba(77,212,153,0.08); }
+.syllabus-day { border-left: 2px solid rgba(77,212,153,0.2); padding-left: 24px; position: relative; margin-bottom: 32px; }
+.syllabus-day::before { content: ''; position: absolute; left: -6px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--emerald); box-shadow: 0 0 12px rgba(77,212,153,0.4); }
+.syllabus-day.highlight-day::before { background: #f0b400; box-shadow: 0 0 12px rgba(240,180,0,0.4); }
+.syllabus-day.highlight-day { border-left-color: rgba(240,180,0,0.3); }
+.syllabus-module { padding: 14px 18px; margin-bottom: 8px; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); display: flex; align-items: center; gap: 12px; }
+.syllabus-module .time { font-size: 0.75rem; font-weight: 600; color: var(--emerald); white-space: nowrap; min-width: 55px; font-family: 'Cabinet Grotesk',monospace; }
+.syllabus-module .name { flex-grow: 1; font-size: 0.9rem; }
+.syllabus-module .badge { font-size: 0.6rem; padding: 2px 10px; border-radius: 20px; background: rgba(77,212,153,0.1); color: var(--emerald); white-space: nowrap; }
+.syllabus-module .badge-gold { font-size: 0.6rem; padding: 2px 10px; border-radius: 20px; background: rgba(240,180,0,0.1); color: #f0b400; white-space: nowrap; }
+.stat-item { text-align: center; padding: 24px; }
+.stat-number { font-family: 'Cabinet Grotesk',sans-serif; font-size: 2.5rem; font-weight: 700; color: var(--emerald); line-height: 1; }
+.stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 6px; }
+.nav-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0; background: rgba(10,10,10,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.04); }
+.nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: 'Cabinet Grotesk','Noto Sans SC',sans-serif; font-weight: 800; font-size: 1.1rem; color: #F5F5F5; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+.nav-logo-img { height: 42px; width: auto; display: block; }
+.nav-links { display: flex; gap: 24px; align-items: center; }
+.nav-links a { font-size: 0.8rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--emerald); }
+.hero-section { padding-top: 120px; padding-bottom: 80px; position: relative; overflow: hidden; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; background: rgba(77,212,153,0.08); border: 1px solid rgba(77,212,153,0.12); font-size: 0.75rem; color: var(--emerald); margin-bottom: 20px; }
+.hero-price { font-family: 'Cabinet Grotesk',sans-serif; font-size: 3rem; font-weight: 900; color: var(--emerald); line-height: 1; }
+.hero-price-sub { font-size: 0.9rem; color: rgba(255,255,255,0.3); }
+.hero-meta { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 16px; }
+.hero-meta-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.feature-card { padding: 28px 24px; border-radius: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); transition: all 0.3s; }
+.feature-card:hover { border-color: rgba(77,212,153,0.15); background: rgba(77,212,153,0.03); }
+.feature-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(77,212,153,0.08); border: 1px solid rgba(77,212,153,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.feature-icon i { font-size: 1.3rem; color: var(--emerald); }
+.feature-title { font-weight: 600; font-size: 1rem; margin-bottom: 8px; }
+.feature-desc { font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.6; }
+.review-card { padding: 24px; border-radius: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); }
+.review-stars { color: #f0b400; font-size: 0.85rem; margin-bottom: 12px; }
+.review-text { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 16px; }
+.review-author { display: flex; align-items: center; gap: 12px; }
+.review-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #4DD499, #2D8C6C); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: #0A0A0A; }
+.review-name { font-size: 0.8rem; font-weight: 600; }
+.review-role { font-size: 0.7rem; color: rgba(255,255,255,0.3); }
+.cta-section { background: linear-gradient(135deg, rgba(77,212,153,0.06), rgba(45,140,108,0.03)); border: 1px solid rgba(77,212,153,0.1); border-radius: 24px; padding: 48px; text-align: center; }
+.faq-item { border-bottom: 1px solid rgba(255,255,255,0.04); }
+.faq-question { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 18px 0; background: none; border: none; color: rgba(255,255,255,0.8); font-size: 0.95rem; font-weight: 500; cursor: pointer; text-align: left; transition: color 0.2s; font-family: inherit; }
+.faq-question:hover { color: var(--emerald); }
+.faq-question i { transition: transform 0.3s; font-size: 1.1rem; color: rgba(255,255,255,0.3); flex-shrink: 0; margin-left: 16px; }
+.faq-question.open i { transform: rotate(45deg); color: var(--emerald); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; padding: 0 20px 0 0; }
+.faq-answer.open { max-height: 500px; padding-bottom: 20px; }
+.faq-answer p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.8; }
+.footer { border-top: 1px solid rgba(255,255,255,0.04); padding: 40px 0 24px; margin-top: 80px; }
+.footer a { color: rgba(255,255,255,0.3); text-decoration: none; font-size: 0.8rem; transition: color 0.2s; }
+.footer a:hover { color: var(--emerald); }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.toast-container { position: fixed; top: 80px; right: 24px; z-index: 999; display: flex; flex-direction: column; gap: 8px; }
+.toast { padding: 14px 20px; border-radius: 12px; background: rgba(10,10,10,0.9); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(12px); display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: #F5F5F5; transform: translateX(120%); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); max-width: 380px; }
+.toast.show { transform: translateX(0); }
+.toast.success { border-color: rgba(77,212,153,0.3); }
+.toast.error { border-color: rgba(239,68,68,0.3); }
+.toast i { font-size: 1.2rem; flex-shrink: 0; }
+.toast.success i { color: var(--emerald); }
+.toast.error i { color: #ef4444; }
+@media (max-width: 768px) { .toast-container { left: 16px; right: 16px; } .toast { max-width: 100%; } }
+.scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, #4DD499, #2D8C6C); z-index: 101; width: 0%; transition: width 0.1s linear; }
+.sticky-phone { display: none; position: fixed; bottom: 24px; left: 24px; z-index: 99; padding: 12px 20px; border-radius: 50px; background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); border: 1px solid rgba(77,212,153,0.2); color: var(--emerald); text-decoration: none; font-weight: 600; font-size: 0.85rem; align-items: center; gap: 8px; animation: phonePulse 2s ease-in-out infinite; }
+@keyframes phonePulse { 0%,100% { box-shadow: 0 0 0 0 rgba(77,212,153,0.2); } 50% { box-shadow: 0 0 0 8px rgba(77,212,153,0); } }
+@media (max-width: 768px) { .sticky-phone { display: flex; } }
+.field-error { display: flex; align-items: center; gap: 4px; margin-top: 4px; font-size: 0.75rem; color: #ef4444; opacity: 0; max-height: 0; transition: opacity 0.3s, max-height 0.3s; overflow: hidden; }
+.field-error.show { opacity: 1; max-height: 30px; }
+.field-error.valid { color: #4DD499; }
+input.error { border-color: rgba(239,68,68,0.4) !important; }
+input.valid { border-color: rgba(77,212,153,0.4) !important; }
+.back-to-top { position: fixed; bottom: 24px; right: 24px; z-index: 99; width: 44px; height: 44px; border-radius: 12px; background: rgba(10,10,10,0.8); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(12px); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); cursor: pointer; opacity: 0; transform: translateY(20px); transition: all 0.3s; }
+.back-to-top.visible { opacity: 1; transform: translateY(0); }
+.back-to-top:hover { border-color: var(--emerald); color: var(--emerald); }
+@media (max-width: 768px) { .back-to-top { width: 36px; height: 36px; bottom: 80px; } }
+.nav-bar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+.project-card { padding: 20px; border-radius: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); display: flex; gap: 16px; align-items: flex-start; transition: all 0.3s; }
+.project-card:hover { border-color: rgba(77,212,153,0.15); }
+.project-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(77,212,153,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.project-icon i { font-size: 1.4rem; color: var(--emerald); }
+.project-title { font-weight: 600; font-size: 0.95rem; }
+.project-desc { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 4px; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="toast-container" id="toastContainer"></div>
+
+<nav class="nav-bar" id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><img src="/logo.png" alt="晋谷云智" class="nav-logo-img"></a>
+    <div class="nav-links">
+      <a href="/#courses">课程</a>
+      <a href="/showcase.html">作品</a>
+      <a href="/teachers.html">师资</a>
+      <a href="/schedule.html">排期</a>
+      <a href="#trial" class="btn-outline" style="padding:8px 18px;">免费试听</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero-section" style="background: radial-gradient(ellipse at 50% 0%, rgba(77,212,153,0.06), transparent 60%);">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="hero-badge reveal"><i class="ph ph-lightning"></i> 最受欢迎 · 进阶首选</div>
+        <h1 class="text-4xl lg:text-5xl font-bold leading-tight reveal" style="font-family:'Cabinet Grotesk','Noto Sans SC',sans-serif;">
+          AIGC 工作流<br><span class="text-[var(--emerald)]">中级进阶</span>
+        </h1>
+        <p class="text-lg text-[rgba(255,255,255,0.45)] mt-4 leading-relaxed reveal">
+          10天从"会用AI"升级到"会搭AI工作流"。<br>
+          ComfyUI节点编辑、LangChain应用开发、RAG知识库、AI Agent搭建。
+        </p>
+        <div class="hero-meta reveal">
+          <div class="hero-meta-item"><i class="ph ph-clock text-[var(--emerald)]"></i> 10天 · 密集实训</div>
+          <div class="hero-meta-item"><i class="ph ph-code text-[var(--emerald)]"></i> 需基础AI使用经验</div>
+          <div class="hero-meta-item"><i class="ph ph-certificate text-[var(--emerald)]"></i> 工信教考认证</div>
+        </div>
+        <div class="flex items-end gap-6 mt-8 reveal">
+          <div>
+            <div class="hero-price">¥3,680</div>
+            <div class="hero-price-sub">含教材+工位 · 不含考试费</div>
+          </div>
+          <a href="#trial" class="btn-primary" style="white-space:nowrap;"><i class="ph ph-pencil-line"></i> 预约试听</a>
+          <a href="#syllabus" class="btn-outline" style="white-space:nowrap;">查看课表</a>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="glass-strong p-1" style="background: linear-gradient(135deg, rgba(77,212,153,0.15), transparent);">
+          <div class="rounded-[18px] overflow-hidden" style="background: rgba(255,255,255,0.02);">
+            <div style="padding:32px 28px;">
+              <div class="text-xs font-medium text-[rgba(255,255,255,0.3)] tracking-widest mb-6">课程速览</div>
+              <div class="grid grid-cols-2 gap-6">
+                <div><div class="text-2xl font-bold font-display" style="font-family:'Cabinet Grotesk',sans-serif;">50</div><div class="text-xs text-[rgba(255,255,255,0.3)] mt-1">课时 (45min/课时)</div></div>
+                <div><div class="text-2xl font-bold font-display" style="font-family:'Cabinet Grotesk',sans-serif;">6</div><div class="text-xs text-[rgba(255,255,255,0.3)] mt-1">完整项目实战</div></div>
+                <div><div class="text-2xl font-bold font-display" style="font-family:'Cabinet Grotesk',sans-serif;">2</div><div class="text-xs text-[rgba(255,255,255,0.3)] mt-1">周 · 每周5天</div></div>
+                <div><div class="text-2xl font-bold font-display" style="font-family:'Cabinet Grotesk',sans-serif;">✓</div><div class="text-xs text-[rgba(255,255,255,0.3)] mt-1">工信教考可报考</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 glass p-4 flex items-center gap-3 text-sm">
+          <i class="ph ph-seal-check text-[var(--emerald)] text-lg"></i>
+          <span class="text-[rgba(255,255,255,0.5)]">报名率占全部课程 <strong class="text-[rgba(255,255,255,0.7)]">60%以上</strong>，最受学员欢迎的进阶路径</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="py-10">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="grid grid-cols-3 md:grid-cols-5 gap-4">
+      <div class="stat-item reveal"><div class="stat-number" data-target="80">0</div><div class="stat-label">中级学员累计</div></div>
+      <div class="stat-item reveal"><div class="stat-number" data-target="96">0</div><div class="stat-label">通过率 %</div></div>
+      <div class="stat-item reveal"><div class="stat-number" data-target="10">0</div><div class="stat-label">天进阶</div></div>
+      <div class="stat-item reveal"><div class="stat-number" data-target="50">0</div><div class="stat-label">合作企业</div></div>
+      <div class="stat-item reveal"><div class="stat-number" data-target="93">0</div><div class="stat-label">就业率 %</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Overview -->
+<section class="py-16">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="mb-12 reveal">
+      <span class="section-label">课程概览</span>
+      <h2 class="section-title mt-1">这门课适合谁</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="ph ph-user-check"></i></div>
+        <div class="feature-title">有AI基础的从业者</div>
+        <div class="feature-desc">会用ChatGPT/Midjourney但想深入搭建自动化工作流。从"工具使用者"升级为"工作流设计者"。</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="ph ph-suitcase"></i></div>
+        <div class="feature-title">设计/运营/营销人员</div>
+        <div class="feature-desc">用AI批量出图、自动化内容生产、搭建个人AI工作台——把重复劳动降到最低。</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="ph ph-code-block"></i></div>
+        <div class="feature-title">技术转AI方向</div>
+        <div class="feature-desc">有基础编程能力但不知道怎么应用到AI场景。LangChain + RAG + Agent，建立AI应用开发认知框架。</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="ph ph-rocket"></i></div>
+        <div class="feature-title">创业者/产品经理</div>
+        <div class="feature-desc">需要理解AI能力的边界和实现路径，自己先跑通原型再找人开发——节省大量沟通成本。</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="ph ph-graduation-cap"></i></div>
+        <div class="feature-title">初级班结业学员</div>
+        <div class="feature-desc">连报学员占比超40%。从入门到进阶无缝衔接，知识体系完整闭环。</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="ph ph-brackets-curly"></i></div>
+        <div class="feature-title">想提升简历的求职者</div>
+        <div class="feature-desc">企业招聘明确要求"熟悉AI工作流搭建"、"有ComfyUI经验"。工信教考认证是简历硬通货。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Learning objectives -->
+<section class="py-16" style="background: radial-gradient(ellipse at 50% 50%, rgba(77,212,153,0.02), transparent 60%);">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="mb-12 reveal">
+      <span class="section-label">学习目标</span>
+      <h2 class="section-title mt-1">10天后，你将带走什么</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass p-6 reveal">
+        <div style="font-family:'Cabinet Grotesk',sans-serif; font-size:2.5rem; font-weight:900; color:rgba(77,212,153,0.15); line-height:1;">01</div>
+        <h3 class="text-lg font-bold mt-2">ComfyUI工作流大师</h3>
+        <p class="text-sm text-[rgba(255,255,255,0.45)] mt-2 leading-relaxed">独立搭建复杂ComfyUI工作流，掌握ControlNet、IP-Adapter、视频生成等进阶节点。能批量处理图像/视频生产。</p>
+      </div>
+      <div class="glass p-6 reveal">
+        <div style="font-family:'Cabinet Grotesk',sans-serif; font-size:2.5rem; font-weight:900; color:rgba(77,212,153,0.15); line-height:1;">02</div>
+        <h3 class="text-lg font-bold mt-2">AI应用开发能力</h3>
+        <p class="text-sm text-[rgba(255,255,255,0.45)] mt-2 leading-relaxed">用LangChain构建LLM应用、搭建RAG知识库系统、开发AI Agent。掌握从API调用到应用部署的全流程。</p>
+      </div>
+      <div class="glass p-6 reveal">
+        <div style="font-family:'Cabinet Grotesk',sans-serif; font-size:2.5rem; font-weight:900; color:rgba(77,212,153,0.15); line-height:1;">03</div>
+        <h3 class="text-lg font-bold mt-2">完整项目作品集</h3>
+        <p class="text-sm text-[rgba(255,255,255,0.45)] mt-2 leading-relaxed">2个完整项目产出：一个ComfyUI复杂工作流、一个AI应用（RAG问答系统或AI Agent）。可放入作品集和简历。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Syllabus -->
+<section id="syllabus" class="py-16">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="mb-12 reveal">
+      <span class="section-label">完整课表</span>
+      <h2 class="section-title mt-1">10天 · 每周5天密集实训</h2>
+      <p class="section-sub mt-3">每天09:00-12:00 理论+实操 / 14:00-17:00 强化练习+项目</p>
+    </div>
+
+    <div class="mb-8 reveal">
+      <h3 class="text-lg font-bold flex items-center gap-3">
+        <span class="text-[var(--emerald)]">Week 01</span>
+        ComfyUI + AI视觉工作流
+      </h3>
+    </div>
+
+    <div class="syllabus-day reveal">
+      <h3 class="text-xl font-bold mb-4 flex items-center gap-3"><span class="text-[var(--emerald)] text-sm font-mono">Day 01</span> ComfyUI 从零到上手</h3>
+      <div class="syllabus-module"><span class="time">09:00</span><span class="name">ComfyUI架构与安装 — 节点图基础、模型加载、工作流加载/保存</span><span class="badge">核心</span></div>
+      <div class="syllabus-module"><span class="time">10:30</span><span class="name">基础工作流搭建 — Text2Image、Image2Image、放大、脸部修复</span><span class="badge">实操</span></div>
+      <div class="syllabus-module"><span class="time">14:00</span><span class="name">节点深入 — Conditioning、Mask、Latent操作、VAE解读</span><span class="badge">核心</span></div>
+      <div class="syllabus-module"><span class="time">15:30</span><span class="name">实战：搭建一个多模型混合工作流</span><span class="badge">实战</span></div>
+    </div>
+
+    <div class="syllabus-day reveal">
+      <h3 class="text-xl font-bold mb-4 flex items-center gap-3"><span class="text-[var(--emerald)] text-sm font-mono">Day 02</span> ControlNet + 精确控制</h3>
+      <div class="syllabus-module"><span class="time">09:00</span><span class="name">ControlNet原理与应用 — Canny/Depth/Pose/Scribble等模型</span><span class="badge">核心</span></div>
+      <div class="syllabus-module"><span class="time">10:30</span><span class="name">多ControlNet叠加 — 姿态+深度+边缘同时控制</span><span class="badge">实操</span></div>
+      <div class="syllabus-module"><span class="time">14:00</span><span class="name">IP-Adapter + 风格迁移 — 参考图风格精准复刻</span><span class="badge">核心</span></div>
+      <div class="syllabus-module"><span class="time">15:30</span><span class="name">实战：角色一致性工作流(ControlNet+IP-Adapter)</span><span class="badge">实战</span></div>
+    </div>
+
+    <div class="syllabus-day reveal">
+      <h3 class="text-xl font-bold mb-4 flex items-center gap-3"><span class="text-[var(--emerald)] text-sm font-mono">Day 03</span> 批处理 + 自动化管线</h3>
+      <div class="syllabus-module"><span class="time">09:00</span><span class="name">图像批处理 — 批量生成、自动保存、队列管理</span><span class="badge">实操</span></div>
+      <div class="syllabus-module"><span class="time">10:30</span><span class="name">自定义节点 — 社区节点导入、节点开发入门</span><span class="badge">进阶</span></div>
+      <div class="syllabus-module"><span class="time">14:00</span><span class="name">自动化管线搭建 — API调用ComfyUI、批量生产管线</span><span class="badge">核心</span></div>
+      <div class="syllabus-module"><span class="time">15:30</span><span class="name">实战：搭建一条电商产品图批量生成管线</span><span class="badge">实战</span></div>
+    </div>
+
+    <div class="syllabus-day reveal">
+      <h3 class="text-xl font-bold mb-4 flex items-center gap-3"><span class="text-[var(--emerald)] text-sm font-mono">Day 04</span> AI视频生成工作流</h3>
+      <div class="syllabus-module"><span class="time">09:00</span><span class="name">AI视频工具全景 — AnimateDiff、SVD、可灵、Runway对比</span><span class="badge">理论</span></div>
+      <div class="syllabus-module"><span class="time">10:30</span><span class="name">ComfyUI视频工作流 — AnimateDiff节点搭建、参数调优</span><span class="badge">核心</span></div>
+      <div class="syllabus-module"><span class="time">14:00</span><span class="name">视频风格化 — ControlNet+AnimateDiff、图生视频、视频转绘</span><span class="badge">实操</span></div>
+      <div class="syllabus-module"><span class="time">15:30</span><span class="name">实战：从一张图生成一段动画</span><span class="badge">实战</span></div>
+    </div>
+
+    <div class="syllabus-day highlight-day reveal">
+      <h3 class="text-xl font-bold mb-4 flex items-center gap-3"><span class="text-[#f0b400] text-sm font-mono">Day 05 ★</span> Week1项目：复杂ComfyUI工作流</h3>
+      <div class="syllabus-module"><span class="time">09:00</span><span class="name">项目启动：选题+方案设计+工作流图预设计</span><span class="badge-gold">项目</span></div>
+      <div class="syllabus-module"><span class="time">10:30</span><span class="name">工作流搭建阶段 — 导师全程辅导</span><span class="badge-gold">项目</span></div>
+      <div class="syllabus-module"><span class="time">14:00</span><span class="name">调优+批处理导出+问题排查</span><span class="badge-gold">项目</span></div>
+      <div class="syllabus-module"><span class="time">15:30</span><span class="name">项目展示+导师点评+Week1复盘</span><span class="badge-gold">展示</span></div>
+    </div>
+
+    <div class="mt-10 mb-8 reveal">
+      <h3 class="text-lg font-bold flex items-center gap-3">
+        <span class="text-[var(--emerald)]">Week 02</span>
+        AI应用开发 + 综合实战
+      </h3>
+    </div>
+
+    <div class="syllabus-day reveal">
+      <h3 class="text-xl font-bold mb-4 flex items-center gap-3"><span class="text-[var(--emerald)] text-sm font-mono">Day 06</span> LangChain 入门与核心概念</h3>
+      <div class="syllabus-module"><span class="time">09:00</span><span class="name">LLM应用开发范式 — Prompt模板、Chain链、输出解析器</span><span class="badge">核心</span></div>
+      <div class="syllabus-module"><span class="time">10:30</span><span class="name">LangChain核心组件 — LLM、ChatPromptTemplate、输出解析</span><span class="badge">实操</span></div>
+      <div class="syllabus-module"><span class="time">14:00</span><span class="name">Memory与对话管理 — 对话历史、Buffer、摘要</span><span class="badge">核心</span></div>
+      <div class="syllabus-module"><span class="time">15:30</span><span class="name">实战：搭建一个智能客服对话系统</span><span class="badge">实战</span></div>
+    </div>
+
+    <div class="syllabus-day reveal">
+      <h3 class="text-xl font-bold mb-4 flex items-center gap-3"><span class="text-[var(--emerald)] text-sm font-mono">Day 07</span> RAG 知识库系统</h3>
+      <div class="syllabus-module"><span class="time">09:00</span><span class="name">RAG架构全解 — 文档加载、文本分割、向量化、检索、生成</span><span class="badge">核心</span></div>
+      <div class="syllabus-module"><span class="time">10:30</span><span class="name">向量数据库实战 — ChromaDB/Qdrant接入、Embedding模型选择</span><span class="badge">实操</span></div>
+      <div class="syllabus-module"><span class="time">14:00</span><span class="name">RAG进阶 — 多轮检索、重排序、HyDE、Context压缩</span><span class="badge">进阶</span></div>
+      <div class="syllabus-module"><span class="time">15:30</span><span class="name">实战：文档问答系统(上传PDF即可问答)</span><span class="badge">实战</span></div>
+    </div>
+
+    <div class="syllabus-day reveal">
+      <h3 class="text-xl font-bold mb-4 flex items-center gap-3"><span class="text-[var(--emerald)] text-sm font-mono">Day 08</span> AI Agent 智能体开发</h3>
+      <div class="syllabus-module"><span class="time">09:00</span><span class="name">Agent架构 — ReAct模式、工具调用、Function Calling</span><span class="badge">核心</span></div>
+      <div class="syllabus-module"><span class="time">10:30</span><span class="name">工具定义与注册 — 搜索工具、计算工具、API工具、文件工具</span><span class="badge">实操</span></div>
+      <div class="syllabus-module"><span class="time">14:00</span><span class="name">多Agent协作 — Agent Supervisor、任务分解与分配</span><span class="badge">进阶</span></div>
+      <div class="syllabus-module"><span class="time">15:30</span><span class="name">实战：搭建一个自动化调研Agent</span><span class="badge">实战</span></div>
+    </div>
+
+    <div class="syllabus-day reveal">
+      <h3 class="text-xl font-bold mb-4 flex items-center gap-3"><span class="text-[var(--emerald)] text-sm font-mono">Day 09</span> 综合项目开发</h3>
+      <div class="syllabus-module"><span class="time">09:00</span><span class="name">项目启动：选题评审+技术方案设计+数据准备</span><span class="badge-gold">项目</span></div>
+      <div class="syllabus-module"><span class="time">10:30</span><span class="name">项目开发（上） — 核心功能实现 + 前端集成</span><span class="badge-gold">项目</span></div>
+      <div class="syllabus-module"><span class="time">14:00</span><span class="name">项目开发（下） — 调试 + 测试 + 部署准备</span><span class="badge-gold">项目</span></div>
+      <div class="syllabus-module"><span class="time">15:30</span><span class="name">预展示准备 — 产品演示打磨</span><span class="badge-gold">项目</span></div>
+    </div>
+
+    <div class="syllabus-day highlight-day reveal">
+      <h3 class="text-xl font-bold mb-4 flex items-center gap-3"><span class="text-[#f0b400] text-sm font-mono">Day 10 ★</span> 项目展示 + 结业</h3>
+      <div class="syllabus-module"><span class="time">09:00</span><span class="name">最终项目展示 — 每人5分钟产品演示+3分钟Q&A</span><span class="badge-gold">展示</span></div>
+      <div class="syllabus-module"><span class="time">10:30</span><span class="name">导师综合点评+改进方向建议</span><span class="badge-gold">点评</span></div>
+      <div class="syllabus-module"><span class="time">14:00</span><span class="name">工信教考认证说明+报考流程+备考资料</span><span class="badge">结业</span></div>
+      <div class="syllabus-module"><span class="time">15:00</span><span class="name">结业式+证书颁发+合影+校友群入群</span><span class="badge">结业</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="py-16" style="background: radial-gradient(ellipse at 50% 50%, rgba(77,212,153,0.02), transparent 60%);">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="mb-12 reveal">
+      <span class="section-label">实训项目</span>
+      <h2 class="section-title mt-1">你将亲手完成的项目</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5">
+      <div class="project-card reveal">
+        <div class="project-icon"><i class="ph ph-graph"></i></div>
+        <div><div class="project-title">ComfyUI复杂工作流</div><div class="project-desc">自选主题搭建一条包含ControlNet+IP-Adapter+AnimateDiff的完整生产级工作流，实现从输入到批量出图的自动化管线。</div></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-icon"><i class="ph ph-chat-circle"></i></div>
+        <div><div class="project-title">RAG智能问答系统</div><div class="project-desc">上传自己的文档（PDF/Word/网页），搭建一套完整的知识库问答系统。支持多轮对话、引用溯源、上下文记忆。</div></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-icon"><i class="ph ph-robot"></i></div>
+        <div><div class="project-title">AI Agent自动化工具</div><div class="project-desc">设计一个能自主完成多步任务的AI Agent：搜索、分析、生成报告——从需求到输出全自动。</div></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-icon"><i class="ph ph-video"></i></div>
+        <div><div class="project-title">AI视频生成管线</div><div class="project-desc">基于ComfyUI搭建图生视频/文生视频管线，实现批量视频生成+风格控制+帧序列导出。</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Certificate -->
+<section class="py-16">
+  <div class="max-w-4xl mx-auto px-6 lg:px-10">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal">
+        <span class="section-label">权威认证</span>
+        <h2 class="section-title mt-1">工信部教考中心认证</h2>
+        <p class="text-sm text-[rgba(255,255,255,0.5)] mt-4 leading-relaxed">
+          全部课程结业后可报名参加 <strong class="text-[rgba(255,255,255,0.8)]">工业和信息化部教育与考试中心</strong> 
+          的「AIGC应用工程师」认证考试。证书全国通用，官网可查。
+        </p>
+        <ul class="mt-6 space-y-3">
+          <li class="flex items-center gap-3 text-sm text-[rgba(255,255,255,0.5)]"><i class="ph ph-check-circle text-[var(--emerald)]"></i> 工信部教考中心统一印制、颁发</li>
+          <li class="flex items-center gap-3 text-sm text-[rgba(255,255,255,0.5)]"><i class="ph ph-check-circle text-[var(--emerald)]"></i> 证书编号全国唯一，官网可查</li>
+          <li class="flex items-center gap-3 text-sm text-[rgba(255,255,255,0.5)]"><i class="ph ph-check-circle text-[var(--emerald)]"></i> 企业招聘、职称评定、项目投标有效加分项</li>
+        </ul>
+      </div>
+      <div class="flex justify-center reveal">
+        <div class="glass-strong p-1" style="background: linear-gradient(135deg, rgba(77,212,153,0.15), transparent); border-radius: 20px;">
+          <div style="padding:24px; border-radius:18px; background: rgba(255,255,255,0.02); text-align:center;">
+            <div style="width:180px; height:240px; margin:0 auto; border-radius:12px; background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(77,212,153,0.05)); border: 1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px;">
+              <i class="ph ph-certificate text-5xl text-[var(--emerald)]" style="opacity:0.6;"></i>
+              <span class="text-xs text-[rgba(255,255,255,0.3)]">AIGC应用工程师</span>
+              <span class="text-[0.55rem] text-[rgba(255,255,255,0.2)]">工信教考证书</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="py-16" style="background: radial-gradient(ellipse at 50% 50%, rgba(77,212,153,0.02), transparent 60%);">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="mb-12 reveal">
+      <span class="section-label">学员评价</span>
+      <h2 class="section-title mt-1">中级班学员怎么说</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5">
+      <div class="review-card reveal"><div class="review-stars"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div><div class="review-text">"初级班上完立马报了中级。ComfyUI那部分太值了，现在公司所有产品图都用我搭的工作流批量生成，领导直接给我加了薪。"</div><div class="review-author"><div class="review-avatar">李</div><div><div class="review-name">李先生</div><div class="review-role">电商运营 · 大同</div></div></div></div>
+      <div class="review-card reveal"><div class="review-stars"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div><div class="review-text">"本来以为10天太长了，结果上完觉得不够用。RAG和Agent那部分内容特别硬核，直接帮我接了一个外包项目，学费一周就回本了。"</div><div class="review-author"><div class="review-avatar">张</div><div><div class="review-name">张先生</div><div class="review-role">自由开发者 · 太原</div></div></div></div>
+      <div class="review-card reveal"><div class="review-stars"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div><div class="review-text">"作为美术设计出身的人，一直觉得编程门槛太高。但ComfyUI的节点式操作太友好了，Day 2就能控制生成想要的画面了。"</div><div class="review-author"><div class="review-avatar">王</div><div><div class="review-name">王设计师</div><div class="review-role">视觉设计 · 大同</div></div></div></div>
+      <div class="review-card reveal"><div class="review-stars"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-half"></i></div><div class="review-text">"我是一家广告公司的负责人，派了3个员工来学。他们回来之后工作效率提升太明显了，准备把整个设计部都送过来培训。"</div><div class="review-author"><div class="review-avatar">陈</div><div><div class="review-name">陈总</div><div class="review-role">广告公司创始人 · 大同</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-16">
+  <div class="max-w-3xl mx-auto px-6 lg:px-10">
+    <div class="mb-10 reveal">
+      <span class="section-label">常见问题</span>
+      <h2 class="section-title mt-1">关于中级班</h2>
+    </div>
+    <div class="space-y-0 reveal">
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">需要什么基础才能报名？<i class="ph ph-plus"></i></button><div class="faq-answer"><p class="text-sm text-[rgba(255,255,255,0.45)] leading-relaxed">需要有基础AI使用经验——会用ChatGPT或同类对话式AI工具。不建议纯零基础直接报中级班，建议先上初级入门班。编程基础不是硬性要求（ComfyUI是节点式操作），但有编程基础在Week2会更有优势。</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">10天上完能到什么水平？<i class="ph ph-plus"></i></button><div class="faq-answer"><p class="text-sm text-[rgba(255,255,255,0.45)] leading-relaxed">能达到独立搭建生产级ComfyUI工作流、开发一个完整的RAG问答系统或AI Agent的水平。很多学员结业后直接接手了公司的AI自动化项目，或者接单做外包。</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">用的什么电脑配置？<i class="ph ph-plus"></i></button><div class="faq-answer"><p class="text-sm text-[rgba(255,255,255,0.45)] leading-relaxed">教室配备RTX 4090工作站，每个学员独立使用。ComfyUI等GPU密集型操作在教室机器上完成。LangChain/RAG开发部分也可用自己的笔记本。</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">初级+中级连报有优惠吗？<i class="ph ph-plus"></i></button><div class="faq-answer"><p class="text-sm text-[rgba(255,255,255,0.45)] leading-relaxed">有。初级+中级连报享9折，双人同行再减¥500/人。具体优惠政策请通过下方表单咨询。</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">学完能在大同找到AI工作吗？<i class="ph ph-plus"></i></button><div class="faq-answer"><p class="text-sm text-[rgba(255,255,255,0.45)] leading-relaxed">我们与大同及周边50+企业有合作，包括本地设计公司、广告传媒、电商企业、科技公司等。中级班学员就业推荐率93%，部分企业直接来班上招人。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="trial" class="py-16">
+  <div class="max-w-4xl mx-auto px-6 lg:px-10">
+    <div class="cta-section reveal">
+      <h2 class="text-2xl lg:text-3xl font-bold" style="font-family:'Cabinet Grotesk','Noto Sans SC',sans-serif;">来试听一天，感受进阶的差距</h2>
+      <p class="mt-3 text-sm text-[rgba(255,255,255,0.5)] max-w-lg mx-auto">试听中班课程一天，亲身体验ComfyUI工作流搭建过程。</p>
+      <div class="mt-8 max-w-md mx-auto">
+        <form id="trialForm" class="space-y-4">
+          <input type="text" name="name" id="trialName" placeholder="你的名字" required class="w-full px-4 py-3 rounded-xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] text-white text-sm outline-none transition-all focus:border-[var(--emerald)] focus:bg-[rgba(77,212,153,0.04)]" style="font-family:inherit;">
+          <input type="tel" name="phone" id="trialPhone" placeholder="手机号" required class="w-full px-4 py-3 rounded-xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] text-white text-sm outline-none transition-all focus:border-[var(--emerald)] focus:bg-[rgba(77,212,153,0.04)]" style="font-family:inherit;">
+          <input type="hidden" name="course" value="中级进阶">
+          <button type="submit" class="btn-primary w-full justify-center text-base py-4"><i class="ph ph-pencil-line"></i> 预约免费试听</button>
+        </form>
+        <p class="mt-3 text-xs text-[rgba(255,255,255,0.25)]">提交后24小时内专属顾问联系你 · 试听不收费</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="grid md:grid-cols-3 gap-8">
+      <div><div class="flex items-center gap-2"><img src="/logo.png" alt="晋谷云智" style="height:42px;width:auto;"></div><p class="text-xs text-[rgba(255,255,255,0.3)] mt-2">大同AIGC实战培训先行者</p></div>
+      <div><p class="text-xs font-semibold text-[rgba(255,255,255,0.3)] tracking-widest mb-3">快速链接</p><div class="flex flex-col gap-2"><a href="/">首页</a><a href="/showcase.html">学员作品</a><a href="/teachers.html">师资团队</a><a href="/course-beginner.html">初级课程</a><a href="/course-intermediate.html">中级课程</a><a href="/course-advanced.html">高级课程</a></div></div>
+      <div><p class="text-xs font-semibold text-[rgba(255,255,255,0.3)] tracking-widest mb-3">联系方式</p><p class="text-xs text-[rgba(255,255,255,0.4)]">电话：<a href="tel:17319059750" class="text-[var(--emerald)]">173-1905-9750</a></p><p class="text-xs text-[rgba(255,255,255,0.4)] mt-1">地址：山西省大同市</p></div>
+    </div>
+    <div class="mt-10 pt-6 border-t border-[rgba(255,255,255,0.04)] text-center"><p class="text-xs text-[rgba(255,255,255,0.2)]">&copy; 2026 晋谷云智教育科技 · All rights reserved</p></div>
+  </div>
+</footer>
+
+<div class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ph ph-arrow-up"></i></div>
+<a href="tel:17319059750" class="sticky-phone"><i class="ph ph-phone-call"></i> 致电咨询</a>
+
+<script>
+window.addEventListener('scroll', function(){
+  var h = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('scrollProgress').style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0%';
+  document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 300);
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+var observer = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); } }); }, {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
+var counted = false;
+var countObserver = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting && !counted){ counted = true; document.querySelectorAll('.stat-number').forEach(function(el){ var match = el.textContent.trim().match(/^([\d.]+)([+%]?)$/); if(!match) return; var target = parseFloat(match[1]), suffix = match[2]||''; var start = performance.now(); function step(now){ var p = Math.min((now-start)/1200,1); var eased = 1-Math.pow(1-p,3); el.textContent = Math.round(eased*target)+suffix; if(p<1) requestAnimationFrame(step); else el.textContent = target+suffix; } requestAnimationFrame(step); }); } }); }, {threshold:0.3});
+document.querySelectorAll('.stat-item').forEach(function(el){ countObserver.observe(el); });
+function toggleFaq(btn){ var answer = btn.nextElementSibling; var isOpen = answer.classList.contains('open'); document.querySelectorAll('.faq-answer.open, .faq-question.open').forEach(function(el){ el.classList.remove('open'); }); if(!isOpen){ answer.classList.add('open'); btn.classList.add('open'); } }
+function validateField(input){ var container = input.parentElement; var error = container.querySelector('.field-error') || (function(){ var d = document.createElement('div'); d.className = 'field-error'; d.innerHTML = '<i class=\"ph ph-warning-circle\"></i><span></span>'; container.appendChild(d); return d; })(); var span = error.querySelector('span'); if(input.value.trim()===''){ error.classList.remove('show','valid'); input.classList.remove('error','valid'); return true; } if(input.name==='name'&&input.value.trim().length<2){ span.textContent='请输入真实姓名（至少2个字）'; error.classList.add('show'); error.classList.remove('valid'); input.classList.add('error'); input.classList.remove('valid'); return false; } if(input.name==='phone'||input.id==='trialPhone'){ if(!/^1[3-9]\d{9}$/.test(input.value.trim())){ span.textContent='请输入正确手机号（11位）'; error.classList.add('show'); error.classList.remove('valid'); input.classList.add('error'); input.classList.remove('valid'); return false; } } error.classList.add('show','valid'); input.classList.add('valid'); input.classList.remove('error'); span.textContent='格式正确'; return true; }
+document.querySelectorAll('#trialForm input:not([type=hidden])').forEach(function(input){ input.addEventListener('blur',function(){ validateField(this); }); input.addEventListener('input',function(){ if(this.classList.contains('error')||this.classList.contains('valid')) validateField(this); }); });
+document.getElementById('trialForm').addEventListener('submit',function(e){ e.preventDefault(); var valid=true; document.querySelectorAll('#trialForm input:not([type=hidden])').forEach(function(input){ if(!validateField(input)) valid=false; }); if(!valid) return; var btn=this.querySelector('button[type=submit]'); btn.disabled=true; btn.innerHTML='<i class=\"ph ph-spinner-gap animate-spin\"></i> 提交中...'; var formData=new FormData(this); fetch('/api/trial',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:formData.get('name'),phone:formData.get('phone'),course:'中级进阶'})}).then(function(r){return r.json();}).then(function(res){ showToast(res.success?'提交成功！顾问将在24h内联系你':'提交失败：'+res.message,res.success?'success':'error'); if(res.success) document.getElementById('trialForm').reset(); }).catch(function(){showToast('网络异常，请稍后重试','error');}).finally(function(){btn.disabled=false;btn.innerHTML='<i class=\"ph ph-pencil-line\"></i> 预约免费试听';});
+});
+function showToast(msg,type){ var container=document.getElementById('toastContainer'); var t=document.createElement('div'); t.className='toast '+(type||'success'); t.innerHTML='<i class=\"ph '+(type==='error'?'ph-x-circle':'ph-check-circle')+'\"></i>'+msg; container.appendChild(t); setTimeout(function(){t.classList.add('show');},10); setTimeout(function(){t.classList.remove('show');setTimeout(function(){t.remove();},400);},4000); }
+</script>
+</body>
+</html>

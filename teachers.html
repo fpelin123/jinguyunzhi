@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>师资团队 — 晋谷云智 AIGC 实战培训</title>
+<meta name="description" content="晋谷云智 26 位行业精英教学团队，8 位全职 AIGC 专家深度介绍。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%234DD499'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' font-family='sans-serif' fill='%230A0A0A' font-weight='bold'%3E晋%3C/text%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #0A0A0A;
+  --surface: rgba(10,10,10,0.7);
+  --emerald: #4DD499;
+  --emerald-soft: rgba(77,212,153,0.3);
+  --emerald-glow: rgba(77,212,153,0.5);
+  --silver: #C0C4C8;
+  --white: #F5F5F5;
+  --glass-bg: rgba(255,255,255,0.035);
+  --glass-border: rgba(255,255,255,0.06);
+  --glass-border-strong: rgba(255,255,255,0.1);
+  --glass-shadow: rgba(0,0,0,0.5);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Noto Sans SC', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: 'Cabinet Grotesk', 'Noto Sans SC', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+.grain-overlay {
+  position: fixed; inset:0; z-index:100;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+.mesh-bg {
+  position: fixed; inset:0;
+  pointer-events: none; z-index:0;
+  overflow: hidden;
+}
+.mesh-bg .orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+}
+.mesh-bg .orb-1 {
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(77,212,153,0.5), rgba(18,90,68,0.15));
+  top: -250px; right: -100px;
+  animation: orbFloat1 24s ease-in-out infinite;
+}
+.mesh-bg .orb-2 {
+  width: 550px; height: 550px;
+  background: radial-gradient(circle, rgba(0,150,136,0.25), rgba(0,100,90,0.08));
+  bottom: 20%; left: -200px;
+  animation: orbFloat2 28s ease-in-out infinite;
+}
+.mesh-bg .orb-3 {
+  width: 450px; height: 450px;
+  background: radial-gradient(circle, rgba(77,212,153,0.2), transparent);
+  top: 45%; right: -150px;
+  animation: orbFloat3 20s ease-in-out infinite;
+}
+.mesh-bg .orb-4 {
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, rgba(0,200,180,0.15), transparent);
+  bottom: -100px; right: 25%;
+  animation: orbFloat1 26s ease-in-out infinite reverse;
+}
+@keyframes orbFloat1 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(80px,-50px) scale(1.12); }
+  66% { transform: translate(-40px,50px) scale(0.92); }
+}
+@keyframes orbFloat2 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(-60px,70px) scale(1.18); }
+}
+@keyframes orbFloat3 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(50px,-40px) scale(1.08); }
+}
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+}
+.glass-strong {
+  background: rgba(255,255,255,0.055);
+  backdrop-filter: blur(32px) saturate(1.6);
+  -webkit-backdrop-filter: blur(32px) saturate(1.6);
+  border: 1px solid var(--glass-border-strong);
+  border-radius: 24px;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.section-label {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--emerald);
+  opacity: 0.7;
+}
+.section-title {
+  font-size: clamp(1.6rem, 3.2vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+.section-sub {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.4);
+  max-width: 500px;
+  line-height: 1.6;
+}
+.btn-glow {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 16px 36px;
+  background: var(--emerald); color: #0A0A0A;
+  font-family: 'Cabinet Grotesk', 'Noto Sans SC', sans-serif;
+  font-weight: 600; font-size: 1.05rem;
+  border: none; border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  text-decoration: none;
+}
+.btn-glow:hover { transform: translateY(-2px) scale(1.03); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 24px;
+  background: transparent; color: var(--white);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 40px;
+  font-family: 'Cabinet Grotesk', 'Noto Sans SC', sans-serif;
+  font-weight: 500; font-size: 0.9rem;
+  cursor: pointer; text-decoration: none;
+  transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+.btn-outline:hover {
+  border-color: var(--emerald); color: var(--emerald);
+  background: rgba(77,212,153,0.06);
+  transform: translateY(-1px);
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  filter: blur(4px);
+  transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1), filter 0.9s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible { opacity:1; transform:translateY(0) scale(1); filter: blur(0); }
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.40s; }
+
+/* Teacher Card */
+.teacher-card {
+  transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+.teacher-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(77,212,153,0.2);
+  box-shadow: 0 12px 48px rgba(0,0,0,0.5), 0 0 40px rgba(77,212,153,0.04);
+}
+.teacher-avatar {
+  width: 72px; height: 72px;
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.works-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.4);
+  margin: 3px 4px 3px 0;
+  white-space: nowrap;
+}
+.skill-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(77,212,153,0.06);
+  border: 1px solid rgba(77,212,153,0.1);
+  font-size: 0.7rem;
+  color: var(--emerald);
+  margin: 3px 5px 3px 0;
+}
+.teacher-bio {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.7;
+}
+.sticky-phone {
+  display: none;
+  position: fixed; bottom: 24px; left: 24px; z-index: 9997;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(77,212,153,0.15);
+  border-radius: 40px;
+  padding: 10px 20px;
+  color: var(--emerald);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  animation: phonePulse 2s ease-in-out infinite;
+}
+.sticky-phone:hover { border-color: var(--emerald); transform: translateY(-2px); }
+@keyframes phonePulse {
+  0%,100% { box-shadow: 0 4px 24px rgba(0,0,0,0.5); }
+  50% { box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 0 20px rgba(77,212,153,0.15); }
+}
+@media (max-width: 768px) { .sticky-phone { display: flex; } }
+.scroll-progress {
+  position: fixed; top: 0; left: 0; z-index: 99999;
+  width: 0%; height: 2px;
+  background: linear-gradient(90deg, var(--emerald), rgba(77,212,153,0.3));
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+.back-to-top {
+  position: fixed; bottom: 32px; right: 32px; z-index: 9998;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: rgba(10,10,10,0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(77,212,153,0.2);
+  color: var(--emerald);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  opacity: 0; transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+.back-to-top.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
+.back-to-top:hover { border-color: rgba(77,212,153,0.5); transform: translateY(-3px); }
+@media (max-width: 768px) {
+  .back-to-top { bottom: 20px; right: 20px; width: 42px; height: 42px; }
+}
+/* Nav bar */
+.nav-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0; background: rgba(10,10,10,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.04); }
+.nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: 'Cabinet Grotesk','Noto Sans SC',sans-serif; font-weight: 800; font-size: 1.1rem; color: #F5F5F5; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+.nav-logo-img { height: 42px; width: auto; display: block; }
+.nav-links { display: flex; gap: 24px; align-items: center; }
+.nav-bar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+</style>
+</head>
+<body>
+<div class="grain-overlay" aria-hidden="true"></div>
+<div class="mesh-bg" aria-hidden="true">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+</div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- NAV -->
+<nav class="nav-bar" id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><img src="/logo.png" alt="晋谷云智" class="nav-logo-img"></a>
+    <div class="nav-links">
+      <a href="/#courses">课程</a>
+      <a href="/showcase.html">作品</a>
+      <a href="/teachers.html">师资</a>
+      <a href="/schedule.html">排期</a>
+      <a href="/#trial" class="btn-outline" style="padding:8px 18px;">免费试听</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative pt-28 pb-16 lg:pt-36 lg:pb-20">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 text-center reveal">
+    <span class="section-label">顶级实战专家团</span>
+    <h1 class="section-title mt-3">想学真东西<br>找我们就对了</h1>
+    <p class="section-sub mx-auto mt-4">26 位行业精英组成的教学团队，一线实战经验 + 前沿技术视野。<br>以下为 8 位全职 AIGC 核心师资深度介绍。</p>
+    <div class="flex flex-wrap justify-center gap-3 mt-8">
+      <a href="#槐刚" class="btn-outline text-sm">槐刚</a>
+      <a href="#候新宇" class="btn-outline text-sm">候新宇</a>
+      <a href="#杜永腾" class="btn-outline text-sm">杜永腾</a>
+      <a href="#汤宜磊" class="btn-outline text-sm">汤宜磊</a>
+      <a href="#李贺" class="btn-outline text-sm">李贺</a>
+      <a href="#郭稳都" class="btn-outline text-sm">郭稳都</a>
+      <a href="#张思航" class="btn-outline text-sm">张思航</a>
+      <a href="#张全势" class="btn-outline text-sm">张全势</a>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHERS -->
+<section class="relative pb-20">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10 space-y-8">
+
+    <!-- 槐刚 -->
+    <div id="槐刚" class="teacher-card glass-strong p-8 lg:p-10 reveal">
+      <div class="flex flex-col lg:flex-row gap-8">
+        <div class="flex-shrink-0 flex flex-col items-center">
+          <div class="teacher-avatar bg-[rgba(77,212,153,0.12)] border border-[rgba(77,212,153,0.2)] text-[var(--emerald)]" style="width:96px;height:96px;border-radius:24px;font-size:2rem;">槐</div>
+          <div class="flex flex-wrap justify-center gap-1.5 mt-4">
+            <span class="skill-tag">AIGC 影视</span>
+            <span class="skill-tag">三维动画</span>
+          </div>
+        </div>
+        <div class="flex-grow">
+          <div class="text-2xl font-bold font-display">槐刚</div>
+          <div class="text-sm text-[var(--emerald)] mt-0.5">AIGC数字&影视动画资深专家</div>
+          <p class="teacher-bio mt-4">拥有15年+CG影视动画行业全链路经验，2023年北京市职业院校技能大赛（中职组）&#8220;短视频制作&#8221;赛项专家评委，多所专业及影视院校特聘讲师。2010年入职头部影视动画制作公司，聚焦视觉特效创作、动画全流程制作及实战型人才培养，精通工业化影视动画生产标准，构建了&#8220;技术落地-项目复盘-能力迁移&#8221;的教学体系，是兼具一线实战、教研沉淀与商业视野的复合型专家。</p>
+          <div class="mt-4">
+            <div class="text-xs text-[rgba(255,255,255,0.25)] mb-2 tracking-wider">代表作品</div>
+            <div class="flex flex-wrap">
+              <span class="works-tag">西游记之大圣归来</span>
+              <span class="works-tag">少年歌行系列</span>
+              <span class="works-tag">元龙系列</span>
+              <span class="works-tag">侠岚</span>
+              <span class="works-tag">赛尔号3</span>
+              <span class="works-tag">30+ 部作品</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 候新宇 -->
+    <div id="候新宇" class="teacher-card glass-strong p-8 lg:p-10 reveal reveal-delay-1">
+      <div class="flex flex-col lg:flex-row gap-8">
+        <div class="flex-shrink-0 flex flex-col items-center">
+          <div class="teacher-avatar bg-[rgba(0,150,136,0.12)] border border-[rgba(0,150,136,0.2)] text-[#00b4a0]" style="width:96px;height:96px;border-radius:24px;font-size:2rem;">候</div>
+          <div class="flex flex-wrap justify-center gap-1.5 mt-4">
+            <span class="skill-tag">AIGC 技术</span>
+            <span class="skill-tag">视觉效果</span>
+          </div>
+        </div>
+        <div class="flex-grow">
+          <div class="text-2xl font-bold font-display">候新宇</div>
+          <div class="text-sm text-[var(--emerald)] mt-0.5">AIGC专业技术导师 & 视觉效果导师</div>
+          <p class="teacher-bio mt-4">北海艺术设计学院动画专业艺术学学士，入职影视动画头部制作公司深耕一线，拥有多年CG三维动画经验，精通三维动画工业化流程制作，专注AIGC技术在三维动画项目中的落地应用，兼具技术创新、流程迭代、管线设计能力，致力于实现AIGC在动画应用中的快速化、模块化、规模化发展。</p>
+          <div class="mt-4">
+            <div class="text-xs text-[rgba(255,255,255,0.25)] mb-2 tracking-wider">代表作品</div>
+            <div class="flex flex-wrap">
+              <span class="works-tag">少年歌行</span>
+              <span class="works-tag">元龙系列</span>
+              <span class="works-tag">芯觉</span>
+              <span class="works-tag">我是大神仙2</span>
+              <span class="works-tag">长夜开拓者</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 杜永腾 -->
+    <div id="杜永腾" class="teacher-card glass-strong p-8 lg:p-10 reveal reveal-delay-2">
+      <div class="flex flex-col lg:flex-row gap-8">
+        <div class="flex-shrink-0 flex flex-col items-center">
+          <div class="teacher-avatar bg-[rgba(212,168,83,0.12)] border border-[rgba(212,168,83,0.2)] text-[#d4a853]" style="width:96px;height:96px;border-radius:24px;font-size:2rem;">杜</div>
+          <div class="flex flex-wrap justify-center gap-1.5 mt-4">
+            <span class="skill-tag" style="border-color:rgba(212,168,83,0.15);color:#d4a853;">影视视效</span>
+            <span class="skill-tag" style="border-color:rgba(212,168,83,0.15);color:#d4a853;">游戏CG</span>
+          </div>
+        </div>
+        <div class="flex-grow">
+          <div class="text-2xl font-bold font-display">杜永腾</div>
+          <div class="text-sm text-[#d4a853] mt-0.5">资深技术专家</div>
+          <p class="teacher-bio mt-4">十多年影视视效与游戏CG领域一线全流程实战经验，深度参与数十部高票房院线电影、国民级国漫IP、爆款剧集的视效创作，精通影视级特效全流程创作逻辑与行业标准，具备从前期创意设计到成片效果落地的全链路能力，拥有海量一线项目经验与行业前沿洞察。</p>
+          <div class="mt-4">
+            <div class="text-xs text-[rgba(255,255,255,0.25)] mb-2 tracking-wider">代表作品</div>
+            <div class="flex flex-wrap">
+              <span class="works-tag">长津湖之水门桥</span>
+              <span class="works-tag">我和我的祖国</span>
+              <span class="works-tag">白蛇2：青蛇劫起</span>
+              <span class="works-tag">斗罗大陆</span>
+              <span class="works-tag">斗破苍穹之少年归来</span>
+              <span class="works-tag">王者荣耀CG</span>
+              <span class="works-tag">阴阳师CG</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 汤宜磊 -->
+    <div id="汤宜磊" class="teacher-card glass-strong p-8 lg:p-10 reveal reveal-delay-3">
+      <div class="flex flex-col lg:flex-row gap-8">
+        <div class="flex-shrink-0 flex flex-col items-center">
+          <div class="teacher-avatar bg-[rgba(77,212,153,0.08)] border border-[rgba(77,212,153,0.15)] text-[var(--emerald)]" style="width:96px;height:96px;border-radius:24px;font-size:2rem;">汤</div>
+          <div class="flex flex-wrap justify-center gap-1.5 mt-4">
+            <span class="skill-tag">影视视效</span>
+            <span class="skill-tag">真人实拍</span>
+          </div>
+        </div>
+        <div class="flex-grow">
+          <div class="text-2xl font-bold font-display">汤宜磊</div>
+          <div class="text-sm text-[var(--emerald)] mt-0.5">资深影视视效导师</div>
+          <p class="teacher-bio mt-4">十余年真人实拍影视视效领域一线全流程实战经验，国内头部真人影视工业化视效发展核心亲历者。深耕实景拍摄与数字特效的融合落地，深谙多题材真人影视视效创作逻辑，擅长古装权谋、现实题材、主旋律、科幻等全题材影视项目的视效全流程把控与落地执行。</p>
+          <div class="mt-4">
+            <div class="text-xs text-[rgba(255,255,255,0.25)] mb-2 tracking-wider">代表作品</div>
+            <div class="flex flex-wrap">
+              <span class="works-tag">流浪地球2</span>
+              <span class="works-tag">独行月球</span>
+              <span class="works-tag">抓娃娃</span>
+              <span class="works-tag">繁花</span>
+              <span class="works-tag">庆余年</span>
+              <span class="works-tag">长安十二时辰</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 李贺 -->
+    <div id="李贺" class="teacher-card glass-strong p-8 lg:p-10 reveal reveal-delay-1">
+      <div class="flex flex-col lg:flex-row gap-8">
+        <div class="flex-shrink-0 flex flex-col items-center">
+          <div class="teacher-avatar bg-[rgba(0,150,136,0.12)] border border-[rgba(0,150,136,0.2)] text-[#00b4a0]" style="width:96px;height:96px;border-radius:24px;font-size:2rem;">李</div>
+          <div class="flex flex-wrap justify-center gap-1.5 mt-4">
+            <span class="skill-tag">灯光视效</span>
+            <span class="skill-tag">教育培训</span>
+          </div>
+        </div>
+        <div class="flex-grow">
+          <div class="text-2xl font-bold font-display">李贺</div>
+          <div class="text-sm text-[var(--emerald)] mt-0.5">资深影视视效导师</div>
+          <p class="teacher-bio mt-4">深耕影视动画行业十余年，精通影视动画灯光视效、全流程制作及工业化生产标准，多年深耕教育培训领域，搭建标准化实战教研体系。2022年创办文化传媒公司，以核心技术驱动影视动画全产业链服务，服务头部企业并落地标杆项目，兼具顶尖技术实力、专业教研能力与成熟商业思维。</p>
+          <div class="mt-4">
+            <div class="text-xs text-[rgba(255,255,255,0.25)] mb-2 tracking-wider">代表作品</div>
+            <div class="flex flex-wrap">
+              <span class="works-tag">蛋仔派对CG</span>
+              <span class="works-tag">凡人修仙传</span>
+              <span class="works-tag">少年歌行系列</span>
+              <span class="works-tag">我是大神仙系列</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 郭稳都 -->
+    <div id="郭稳都" class="teacher-card glass-strong p-8 lg:p-10 reveal reveal-delay-2">
+      <div class="flex flex-col lg:flex-row gap-8">
+        <div class="flex-shrink-0 flex flex-col items-center">
+          <div class="teacher-avatar bg-[rgba(77,212,153,0.08)] border border-[rgba(77,212,153,0.15)] text-[var(--emerald)]" style="width:96px;height:96px;border-radius:24px;font-size:2rem;">郭</div>
+          <div class="flex flex-wrap justify-center gap-1.5 mt-4">
+            <span class="skill-tag">高级视觉</span>
+            <span class="skill-tag">三维全流程</span>
+          </div>
+        </div>
+        <div class="flex-grow">
+          <div class="text-2xl font-bold font-display">郭稳都</div>
+          <div class="text-sm text-[var(--emerald)] mt-0.5">高级视觉特效导师</div>
+          <p class="teacher-bio mt-4">专注动漫、影视与数字艺术领域多年，精通三维动画全流程制作及工业化标准，在实战派培训领域建树颇丰。擅长将创意概念转化为高质感视觉呈现，对光影、质感、运动节奏精准把控，具备从前期设计到最终成片的完整落地能力，追求技术与艺术的极致平衡。</p>
+          <div class="mt-4">
+            <div class="text-xs text-[rgba(255,255,255,0.25)] mb-2 tracking-wider">代表作品</div>
+            <div class="flex flex-wrap">
+              <span class="works-tag">哪吒重生</span>
+              <span class="works-tag">元龙系列</span>
+              <span class="works-tag">少年歌行2/3</span>
+              <span class="works-tag">芯觉</span>
+              <span class="works-tag">长夜开拓者</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 张思航 -->
+    <div id="张思航" class="teacher-card glass-strong p-8 lg:p-10 reveal reveal-delay-3">
+      <div class="flex flex-col lg:flex-row gap-8">
+        <div class="flex-shrink-0 flex flex-col items-center">
+          <div class="teacher-avatar bg-[rgba(212,168,83,0.12)] border border-[rgba(212,168,83,0.2)] text-[#d4a853]" style="width:96px;height:96px;border-radius:24px;font-size:2rem;">张</div>
+          <div class="flex flex-wrap justify-center gap-1.5 mt-4">
+            <span class="skill-tag" style="border-color:rgba(212,168,83,0.15);color:#d4a853;">三维动漫</span>
+            <span class="skill-tag" style="border-color:rgba(212,168,83,0.15);color:#d4a853;">项目管理</span>
+          </div>
+        </div>
+        <div class="flex-grow">
+          <div class="text-2xl font-bold font-display">张思航</div>
+          <div class="text-sm text-[#d4a853] mt-0.5">高级视觉特效导师</div>
+          <p class="teacher-bio mt-4">深耕三维动漫领域十载，双专业科班出身，长期任职行业头部企业，是兼具技术深度与管理高度的复合型高端人才。全面执掌影视动画镜头板块全链路，把控团队全局与镜头品质，前瞻布局AIGC与三维制作的融合创新，持续探索AIGC与工业化制作流程的落地路径。</p>
+          <div class="mt-4">
+            <div class="text-xs text-[rgba(255,255,255,0.25)] mb-2 tracking-wider">代表作品</div>
+            <div class="flex flex-wrap">
+              <span class="works-tag">画江湖之不良人</span>
+              <span class="works-tag">元龙系列</span>
+              <span class="works-tag">少年歌行系列</span>
+              <span class="works-tag">芯觉</span>
+              <span class="works-tag">换世门生</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 张全势 -->
+    <div id="张全势" class="teacher-card glass-strong p-8 lg:p-10 reveal reveal-delay-1">
+      <div class="flex flex-col lg:flex-row gap-8">
+        <div class="flex-shrink-0 flex flex-col items-center">
+          <div class="teacher-avatar bg-[rgba(77,212,153,0.12)] border border-[rgba(77,212,153,0.2)] text-[var(--emerald)]" style="width:96px;height:96px;border-radius:24px;font-size:2rem;">张</div>
+          <div class="flex flex-wrap justify-center gap-1.5 mt-4">
+            <span class="skill-tag">三维技术</span>
+            <span class="skill-tag">AIGC融合</span>
+          </div>
+        </div>
+        <div class="flex-grow">
+          <div class="text-2xl font-bold font-display">张全势</div>
+          <div class="text-sm text-[var(--emerald)] mt-0.5">专业技术导师</div>
+          <p class="teacher-bio mt-4">拥有多年三维动漫技术一线实战与项目管理经验，精通三维全流程制作，曾参与多款动漫短片、虚拟角色建模等核心项目。兼具扎实的三维技术功底与前沿的AIGC应用能力，专注AIGC与三维动漫融合教学，擅长将AI技术与传统三维制作流程结合，助力学员快速掌握核心技能。</p>
+          <div class="mt-4">
+            <div class="text-xs text-[rgba(255,255,255,0.25)] mb-2 tracking-wider">代表作品</div>
+            <div class="flex flex-wrap">
+              <span class="works-tag">元龙系列</span>
+              <span class="works-tag">少年歌行系列</span>
+              <span class="works-tag">我是大神仙系列</span>
+              <span class="works-tag">三十六骑</span>
+              <span class="works-tag">恶魔法则</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="relative pb-20">
+  <div class="max-w-4xl mx-auto px-6 lg:px-10 text-center reveal">
+    <div class="glass-strong p-10 lg:p-14">
+      <h2 class="section-title">跟对人，学真本事</h2>
+      <p class="text-sm text-[rgba(255,255,255,0.4)] mt-4 max-w-lg mx-auto leading-relaxed">26 位行业专家倾囊相授，人均 5 年+一线实战经验。<br>来晋谷云智，你的老师就是行业顶流。</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+        <a href="/#trial" class="btn-glow">预约免费试听 <span class="btn-icon-ring"><i class="ph ph-arrow-right"></i></span></a>
+        <a href="/" class="btn-outline">返回首页</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="relative pt-12 pb-10 border-t border-[rgba(255,255,255,0.03)]">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 rounded-lg bg-[var(--emerald)] flex items-center justify-center">
+          <i class="ph ph-brain text-black text-sm"></i>
+        </div>
+        <span class="font-display text-base font-bold">晋谷云智</span>
+      </div>
+      <p class="text-xs text-[rgba(255,255,255,0.18)]">&copy; 2026 晋谷云智 &middot; 山西晋谷云智教育科技有限公司</p>
+      <div class="flex items-center gap-4 text-xs text-[rgba(255,255,255,0.18)]">
+        <span>工信教考授权培训点</span>
+        <span>咨询电话：173 1905 9750</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="tel:17319059750" class="sticky-phone"><i class="ph ph-phone"></i> 致电咨询</a>
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到顶部"><i class="ph ph-arrow-up"></i></button>
+
+<script>
+(function(){
+  'use strict';
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Scroll progress
+  const progressBar = document.getElementById('scrollProgress');
+  const backBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0%';
+    backBtn.classList.toggle('visible', window.scrollY > 300);
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>

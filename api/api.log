@@ -1,0 +1,21 @@
+[2026-05-11T09:28:01.973Z] [INFO] Server started {"port":3001}
+[2026-05-11T09:28:16.047Z] [INFO] New trial submission {"id":"mp101bcf2sqp","name":"测试用户","course":"beginner"}
+[2026-05-11T09:28:17.342Z] [INFO] New contact message {"id":"mp101ccehsea","name":"张三"}
+[2026-05-11T09:28:26.739Z] [INFO] New trial submission {"id":"mp101jlflyct","name":"限流A","course":""}
+[2026-05-11T09:37:44.287Z] [INFO] New trial submission {"id":"mp10dhsut7uo","name":"立伟","course":"intermediate"}
+[2026-05-11T10:31:38.841Z] [INFO] Server started {"port":3001}
+[2026-05-11T10:31:39.758Z] [INFO] Admin login successful
+[2026-05-11T10:32:56.087Z] [INFO] Admin login successful
+[2026-05-11T10:33:00.141Z] [INFO] Admin login successful
+[2026-05-11T10:36:58.032Z] [INFO] Admin login successful
+[2026-05-11T10:37:10.739Z] [INFO] Status updated {"id":"mp10dhsut7uo","status":"contacted"}
+[2026-05-11T10:37:11.393Z] [INFO] Status updated {"id":"mp10dhsut7uo","status":"enrolled"}
+[2026-05-11T10:37:11.971Z] [INFO] Status updated {"id":"mp10dhsut7uo","status":"closed"}
+[2026-05-11T10:37:12.771Z] [INFO] Status updated {"id":"mp10dhsut7uo","status":"new"}
+[2026-05-11T10:37:13.645Z] [INFO] Status updated {"id":"mp10dhsut7uo","status":"contacted"}
+[2026-05-11T10:37:14.408Z] [INFO] Status updated {"id":"mp10dhsut7uo","status":"enrolled"}
+[2026-05-11T10:37:15.069Z] [INFO] Status updated {"id":"mp10dhsut7uo","status":"closed"}
+[2026-05-11T10:37:16.382Z] [INFO] Status updated {"id":"mp101jlflyct","status":"enrolled"}
+[2026-05-11T10:54:41.321Z] [INFO] Server started {"port":3001}
+[2026-05-11T10:57:01.178Z] [INFO] Schedule created {"id":"mp137g8qem","name":"测试班"}
+[2026-05-11T10:57:04.954Z] [INFO] Schedule deleted {"id":"mp137g8qem"}

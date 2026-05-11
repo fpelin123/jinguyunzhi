@@ -1,0 +1,12 @@
+[
+  {
+    "id": "mp101ccehsea",
+    "name": "张三",
+    "phone": "13912345678",
+    "email": "",
+    "message": "请问高级班什么时候开课",
+    "createdAt": "2026-05-11T09:28:17.342Z",
+    "source": "landing-page-contact",
+    "status": "new"
+  }
+]

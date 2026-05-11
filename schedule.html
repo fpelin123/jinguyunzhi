@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>课程排期 · 晋谷云智 · 大同AIGC培训</title>
+<meta name="description" content="晋谷云智AIGC培训课程排期表。初级/中级/高级班开课时间、剩余名额查询，在线预约试听。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%234DD499'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' font-family='sans-serif' fill='%230A0A0A' font-weight='bold'%3E晋%3C/text%3E%3C/svg%3E">
+<style>
+:root{--emerald:#4DD499;--bg:#0A0A0A;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans SC',sans-serif;background:var(--bg);color:#E0E0E0;min-height:100vh;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:rgba(77,212,153,0.3);border-radius:2px;}
+
+.nav-bar{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:rgba(10,10,10,0.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.04);}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Cabinet Grotesk','Noto Sans SC',sans-serif;font-weight:800;font-size:1.1rem;color:#F5F5F5;text-decoration:none;display:flex;align-items:center;gap:8px;}
+.nav-logo-img { height: 42px; width: auto; display: block; }
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-bar.scrolled{box-shadow:0 4px 20px rgba(0,0,0,0.3);}
+
+.hero{max-width:1100px;margin:0 auto;padding:120px 24px 40px;}
+.hero h1{font-family:'Cabinet Grotesk','Noto Sans SC',sans-serif;font-size:2.2rem;font-weight:700;}
+.hero p{color:rgba(255,255,255,0.4);margin-top:8px;font-size:0.9rem;}
+
+.content{max-width:1100px;margin:0 auto;padding:0 24px 80px;}
+
+.calendar-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
+.calendar-header .month{font-family:'Cabinet Grotesk','Noto Sans SC',sans-serif;font-size:1.5rem;font-weight:700;}
+.calendar-nav{display:flex;gap:8px;}
+.calendar-nav button{width:36px;height:36px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.5);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;font-size:1rem;}
+.calendar-nav button:hover{border-color:var(--emerald);color:var(--emerald);background:rgba(77,212,153,0.05);}
+
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:32px;}
+.weekday{text-align:center;font-size:0.75rem;color:rgba(255,255,255,0.25);font-weight:500;padding:10px 0;letter-spacing:0.05em;}
+.day-cell{text-align:center;padding:8px 4px;border-radius:10px;font-size:0.85rem;color:rgba(255,255,255,0.4);min-height:60px;transition:all 0.2s;position:relative;background:rgba(255,255,255,0.01);}
+.day-cell.other-month{color:rgba(255,255,255,0.08);}
+.day-cell.has-class{cursor:pointer;background:rgba(77,212,153,0.04);color:rgba(255,255,255,0.7);font-weight:500;}
+.day-cell.has-class:hover{background:rgba(77,212,153,0.1);}
+.day-cell.today{box-shadow:inset 0 0 0 1px rgba(77,212,153,0.3);}
+.day-cell .num{font-size:0.9rem;}
+.day-cell .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--emerald);margin-top:2px;}
+.day-cell .dot.multi{background:#f0b400;}
+
+.class-list{display:grid;gap:12px;grid-template-columns:1fr;}
+.class-card{display:flex;gap:16px;padding:20px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);align-items:flex-start;transition:all 0.2s;cursor:pointer;}
+.class-card:hover{border-color:rgba(77,212,153,0.15);background:rgba(77,212,153,0.02);}
+.class-card .tag{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700;font-size:0.75rem;color:#0A0A0A;}
+.class-card .tag.beginner{background:linear-gradient(135deg,#4DD499,#2D8C6C);}
+.class-card .tag.intermediate{background:linear-gradient(135deg,#60a5fa,#3b82f6);}
+.class-card .tag.advanced{background:linear-gradient(135deg,#f0b400,#d49400);}
+.class-card .info{flex-grow:1;}
+.class-card .info .title{font-weight:600;font-size:0.95rem;}
+.class-card .info .meta{font-size:0.8rem;color:rgba(255,255,255,0.4);margin-top:4px;display:flex;gap:16px;flex-wrap:wrap;}
+.class-card .info .meta i{font-size:0.9rem;}
+.class-card .seats{text-align:right;flex-shrink:0;}
+.class-card .seats .num{font-family:'Cabinet Grotesk',sans-serif;font-size:1.3rem;font-weight:700;color:var(--emerald);}
+.class-card .seats .label{font-size:0.7rem;color:rgba(255,255,255,0.25);}
+.class-card .seats .low{color:#f0b400;}
+.class-card .seats .full{color:#ef4444;}
+.class-card .btn-sm{padding:6px 14px;border-radius:8px;background:linear-gradient(135deg,#4DD499,#2D8C6C);color:#0A0A0A;font-weight:600;font-size:0.7rem;border:none;cursor:pointer;text-decoration:none;display:inline-block;margin-top:6px;}
+.class-card .btn-sm:hover{box-shadow:0 4px 12px rgba(77,212,153,0.2);}
+
+.legend{display:flex;gap:20px;margin-bottom:24px;flex-wrap:wrap;}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:0.75rem;color:rgba(255,255,255,0.35);}
+.legend-item .swatch{width:12px;height:12px;border-radius:4px;}
+.legend-item .swatch.beginner{background:linear-gradient(135deg,#4DD499,#2D8C6C);}
+.legend-item .swatch.intermediate{background:linear-gradient(135deg,#60a5fa,#3b82f6);}
+.legend-item .swatch.advanced{background:linear-gradient(135deg,#f0b400,#d49400);}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+.footer{border-top:1px solid rgba(255,255,255,0.04);padding:32px 0 24px;max-width:1100px;margin:40px auto 0;text-align:center;}
+.footer p{font-size:0.75rem;color:rgba(255,255,255,0.2);}
+
+@media(max-width:768px){
+  .hero h1{font-size:1.6rem;}
+  .day-cell{min-height:44px;padding:6px 2px;font-size:0.75rem;}
+  .class-card{flex-direction:column;}
+  .class-card .seats{text-align:left;}
+  .calendar-grid{gap:2px;}
+}
+
+/* Filter buttons */
+.filter-row{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.filter-btn{padding:8px 18px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);color:rgba(255,255,255,0.4);cursor:pointer;font-size:0.8rem;transition:all 0.2s;font-family:inherit;}
+.filter-btn:hover{border-color:var(--emerald);color:var(--emerald);}
+.filter-btn.active{background:rgba(77,212,153,0.1);border-color:var(--emerald);color:var(--emerald);}
+</style>
+</head>
+<body>
+
+<nav class="nav-bar" id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><img src="/logo.png" alt="晋谷云智" class="nav-logo-img"></a>
+    <div class="nav-links">
+      <a href="/#courses">课程</a>
+      <a href="/showcase.html">作品</a>
+      <a href="/teachers.html">师资</a>
+      <a href="/schedule.html">排期</a>
+      <a href="/#trial" class="btn-outline" style="padding:8px 18px;">免费试听</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero reveal"><span style="display:inline-block;font-size:0.7rem;font-weight:500;letter-spacing:0.15em;color:var(--emerald);text-transform:uppercase;opacity:0.7;margin-bottom:10px;">开课计划</span><h1>课程排期 &amp; 剩余名额</h1><p>查看到最近6个月的开课安排，选择适合你的时间报名</p></div>
+
+<div class="content">
+  <!-- Filter -->
+  <div class="filter-row reveal">
+    <span class="filter-btn active" data-filter="all" onclick="setCourseFilter(this,'all')">全部课程</span>
+    <span class="filter-btn" data-filter="beginner" onclick="setCourseFilter(this,'beginner')">初级入门</span>
+    <span class="filter-btn" data-filter="intermediate" onclick="setCourseFilter(this,'intermediate')">中级进阶</span>
+    <span class="filter-btn" data-filter="advanced" onclick="setCourseFilter(this,'advanced')">高级实战</span>
+  </div>
+
+  <!-- Calendar -->
+  <div class="calendar-header reveal">
+    <div class="month" id="monthDisplay">2026年5月</div>
+    <div class="calendar-nav">
+      <button onclick="prevMonth()"><i class="ph ph-caret-left"></i></button>
+      <button onclick="todayMonth()"><i class="ph ph-dot-outline"></i></button>
+      <button onclick="nextMonth()"><i class="ph ph-caret-right"></i></button>
+    </div>
+  </div>
+
+  <div class="legend reveal">
+    <div class="legend-item"><div class="swatch beginner"></div>初级入门</div>
+    <div class="legend-item"><div class="swatch intermediate"></div>中级进阶</div>
+    <div class="legend-item"><div class="swatch advanced"></div>高级实战</div>
+    <div class="legend-item" style="margin-left:auto;font-size:0.9rem;color:var(--emerald);"><i class="ph ph-dot"></i> 点击日期查看课程</div>
+  </div>
+
+  <div class="calendar-grid" id="calendarGrid"></div>
+
+  <!-- Class list for selected month -->
+  <div id="classList" class="class-list reveal"></div>
+</div>
+
+<footer class="footer"><p>&copy; 2026 晋谷云智教育科技 · 课程排期可能调整，以实际通知为准</p></footer>
+
+<script>
+var today = new Date();
+var currentYear = today.getFullYear();
+var currentMonth = today.getMonth();
+var currentFilter = 'all';
+var classes = [];
+
+// Load from API
+fetch('/api/schedule').then(function(r){ return r.json(); }).then(function(res){
+  if(res.success) { classes = res.data; renderCalendar(); renderClassList(); }
+});
+// Fallback: render with empty data so page isn't blank
+renderCalendar();
+
+function parseDate(s) { var p=s.split('-'); return new Date(parseInt(p[0]),parseInt(p[1])-1,parseInt(p[2])); }
+function dateStr(d) { return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+function pad(n){ return n<10?'0'+n:''+n; }
+
+function renderCalendar() {
+  var firstDay = new Date(currentYear, currentMonth, 1);
+  var lastDay = new Date(currentYear, currentMonth + 1, 0);
+  var startDay = firstDay.getDay(); // 0=Sun
+  var daysInMonth = lastDay.getDate();
+  var daysInPrev = new Date(currentYear, currentMonth, 0).getDate();
+
+  // Build date→classes map
+  var dateMap = {};
+  classes.forEach(function(c){
+    var start = parseDate(c.dateStr);
+    var end = parseDate(c.endDate);
+    for(var d = new Date(start); d <= end; d.setDate(d.getDate()+1)){
+      var key = dateStr(d);
+      if(!dateMap[key]) dateMap[key]=[];
+      dateMap[key].push(c);
+    }
+  });
+
+  var days = [];
+  // Previous month
+  for(var i = startDay - 1; i >= 0; i--){
+    days.push({day: daysInPrev - i, other: true});
+  }
+  // Current month
+  for(var i = 1; i <= daysInMonth; i++){
+    days.push({day: i, other: false});
+  }
+  // Next month
+  while(days.length % 7 !== 0){
+    days.push({day: (days.length % 7 === 0 ? 0 : 1) + days.length - daysInMonth - startDay, other: true});
+  }
+
+  var todayStr = dateStr(today);
+  var html = '<div class="weekday">日</div><div class="weekday">一</div><div class="weekday">二</div><div class="weekday">三</div><div class="weekday">四</div><div class="weekday">五</div><div class="weekday">六</div>';
+
+  days.forEach(function(d){
+    var date = new Date(currentYear, currentMonth, d.day);
+    if(d.other){
+      if(d.day > 15) date = new Date(currentYear, currentMonth - 1, d.day);
+      else date = new Date(currentYear, currentMonth + 1, d.day);
+    }
+    var key = dateStr(date);
+    var cls = dateMap[key] || [];
+    var classesOnDay = cls.filter(function(c){ return currentFilter==='all' || c.type===currentFilter; });
+    var isToday = key === todayStr;
+
+    var divClass = 'day-cell';
+    if(d.other) divClass += ' other-month';
+    if(classesOnDay.length > 0) divClass += ' has-class';
+    if(isToday) divClass += ' today';
+
+    var dotHtml = '';
+    if(classesOnDay.length > 0){
+      var types = {};
+      classesOnDay.forEach(function(c){ types[c.type]=true; });
+      if(Object.keys(types).length > 1) dotHtml = '<div class="dot multi"></div>';
+      else dotHtml = '<div class="dot"></div>';
+    }
+
+    html += '<div class="'+divClass+'" onclick="showClasses(\''+key+'\')"><div class="num">'+d.day+'</div>'+dotHtml+'</div>';
+  });
+
+  document.getElementById('calendarGrid').innerHTML = html;
+  document.getElementById('monthDisplay').textContent = currentYear+'年'+(currentMonth+1)+'月';
+  renderClassList();
+}
+
+function renderClassList(specificDate) {
+  var monthClasses = classes.filter(function(c){
+    if(currentFilter !== 'all' && c.type !== currentFilter) return false;
+    return true;
+  }).sort(function(a,b){ return parseDate(a.dateStr) - parseDate(b.dateStr); });
+
+  var html = '';
+  monthClasses.forEach(function(c){
+    var tagClass = c.type;
+    var tagLabel = c.label;
+    var seatsNum = c.seats;
+    var seatsClass = seatsNum <= 5 ? 'low' : (seatsNum <= 0 ? 'full' : '');
+    var seatsLabel = seatsNum <= 0 ? '已满' : '剩余';
+    var start = parseDate(c.dateStr);
+
+    // Only show classes from current month or later
+    var monthStart = new Date(currentYear, currentMonth, 1);
+    var monthEnd = new Date(currentYear, currentMonth + 1, 0);
+    var cStart = parseDate(c.dateStr);
+    var cEnd = parseDate(c.endDate);
+
+    // Check if this class overlaps with the current month view
+    if(cEnd < monthStart || cStart > monthEnd) return;
+
+    html += '<div class="class-card reveal" onclick="location.href=\'/course-'+c.type+'.html\'">';
+    html += '<div class="tag '+tagClass+'">'+tagLabel+'</div>';
+    html += '<div class="info"><div class="title">'+c.name+'</div>';
+    html += '<div class="meta"><span><i class="ph ph-calendar-blank"></i> '+c.dateStr+' ~ '+c.endDate+'</span><span><i class="ph ph-clock"></i> '+c.time+'</span><span><i class="ph ph-clock-countdown"></i> '+c.duration+'</span><span>'+c.price+'</span></div></div>';
+    html += '<div class="seats"><div class="num '+seatsClass+'">'+seatsNum+'</div><div class="label">'+seatsLabel+' 席</div><a href="/#trial" class="btn-sm">预约</a></div>';
+    html += '</div>';
+  });
+
+  document.getElementById('classList').innerHTML = html || '<div style="text-align:center;padding:40px;color:rgba(255,255,255,0.2);font-size:0.9rem;">该月暂无排课计划</div>';
+
+  // Re-trigger reveal animations
+  setTimeout(function(){
+    document.querySelectorAll('#classList .reveal').forEach(function(el, i){
+      setTimeout(function(){ el.classList.add('visible'); }, i * 80);
+    });
+  }, 50);
+}
+
+function showClasses(dateKey) {
+  // Scroll to class list
+  document.getElementById('classList').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function prevMonth(){ currentMonth--; if(currentMonth<0){ currentMonth=11; currentYear--; } renderCalendar(); }
+function nextMonth(){ currentMonth++; if(currentMonth>11){ currentMonth=0; currentYear++; } renderCalendar(); }
+function todayMonth(){ currentYear=today.getFullYear(); currentMonth=today.getMonth(); renderCalendar(); }
+
+function setCourseFilter(el, filter){
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  el.classList.add('active');
+  renderCalendar();
+}
+
+// Reveal observer
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
+
+// Scroll nav shadow
+window.addEventListener('scroll', function(){
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+}, {passive:true});
+
+</script>
+</body>
+</html>

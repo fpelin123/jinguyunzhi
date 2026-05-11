@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>晋谷云智 · 管理后台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%234DD499'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' font-family='sans-serif' fill='%230A0A0A' font-weight='bold'%3E晋%3C/text%3E%3C/svg%3E">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--emerald:#4DD499;--bg:#0A0A0A;--card:rgba(255,255,255,0.03);--border:rgba(255,255,255,0.06);}
+body{font-family:'Noto Sans SC',sans-serif;background:var(--bg);color:#E0E0E0;min-height:100vh;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:rgba(77,212,153,0.3);border-radius:2px;}
+
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:220px;padding:24px 0;border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:10;}
+.sidebar .logo{padding:0 20px;margin-bottom:32px;display:flex;align-items:center;gap:8px;font-weight:800;font-size:1rem;color:#F5F5F5;font-family:'Cabinet Grotesk','Noto Sans SC',sans-serif;}
+.sidebar .logo span{color:var(--emerald);}
+.sidebar a{display:flex;align-items:center;gap:10px;padding:12px 20px;color:rgba(255,255,255,0.4);text-decoration:none;font-size:0.85rem;transition:all 0.2s;border-right:2px solid transparent;}
+.sidebar a:hover{color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.02);}
+.sidebar a.active{color:var(--emerald);border-right-color:var(--emerald);background:rgba(77,212,153,0.04);}
+.sidebar a i{font-size:1.1rem;}
+.sidebar .spacer{flex-grow:1;}
+.sidebar .logout{color:rgba(255,255,255,0.25);cursor:pointer;}
+.sidebar .logout:hover{color:#ef4444;}
+
+.main{margin-left:220px;padding:24px 32px;}
+.main h1{font-family:'Cabinet Grotesk','Noto Sans SC',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:4px;}
+.main .sub{color:rgba(255,255,255,0.35);font-size:0.8rem;margin-bottom:24px;}
+
+.card{border-radius:12px;padding:20px;background:var(--card);border:1px solid var(--border);}
+.card .num{font-family:'Cabinet Grotesk',sans-serif;font-size:2rem;font-weight:700;color:var(--emerald);}
+.card .label{font-size:0.75rem;color:rgba(255,255,255,0.35);margin-top:4px;}
+.card .icon-wrap{width:40px;height:40px;border-radius:10px;background:rgba(77,212,153,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+.card .icon-wrap i{font-size:1.2rem;color:var(--emerald);}
+
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:24px;}
+
+table{width:100%;border-collapse:collapse;font-size:0.8rem;}
+th{text-align:left;padding:12px 8px;border-bottom:1px solid var(--border);color:rgba(255,255,255,0.3);font-weight:500;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;}
+td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,0.03);vertical-align:middle;}
+tr:hover{background:rgba(255,255,255,0.01);}
+
+.badge{padding:3px 10px;border-radius:20px;font-size:0.65rem;font-weight:500;display:inline-block;}
+.badge-new{background:rgba(77,212,153,0.1);color:var(--emerald);}
+.badge-contacted{background:rgba(59,130,246,0.1);color:#60a5fa;}
+.badge-enrolled{background:rgba(240,180,0,0.1);color:#f0b400;}
+.badge-closed{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.3);}
+
+.status-btn{padding:4px 10px;border-radius:6px;border:1px solid var(--border);background:none;color:rgba(255,255,255,0.4);font-size:0.7rem;cursor:pointer;transition:all 0.2s;}
+.status-btn:hover{border-color:var(--emerald);color:var(--emerald);}
+.status-btn.active{background:rgba(77,212,153,0.1);border-color:var(--emerald);color:var(--emerald);}
+
+.login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;flex-direction:column;gap:24px;}
+.login-screen .box{width:360px;padding:40px;border-radius:16px;background:var(--card);border:1px solid var(--border);}
+.login-screen h2{font-family:'Cabinet Grotesk','Noto Sans SC',sans-serif;text-align:center;margin-bottom:24px;font-size:1.2rem;}
+.login-screen input{width:100%;padding:12px 16px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:white;font-size:0.9rem;outline:none;transition:border 0.2s;font-family:inherit;}
+.login-screen input:focus{border-color:var(--emerald);}
+.login-screen button{width:100%;padding:12px;border-radius:10px;background:linear-gradient(135deg,#4DD499,#2D8C6C);color:#0A0A0A;font-weight:600;font-size:0.9rem;border:none;cursor:pointer;transition:all 0.2s;margin-top:16px;}
+.login-screen button:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(77,212,153,0.2);}
+.login-screen .error{color:#ef4444;font-size:0.8rem;text-align:center;margin-top:12px;}
+
+.page{display:none;}
+.page.active{display:block;}
+
+.refresh-btn{float:right;padding:8px 16px;border-radius:8px;border:1px solid var(--border);background:none;color:rgba(255,255,255,0.5);cursor:pointer;font-size:0.8rem;display:flex;align-items:center;gap:6px;font-family:inherit;}
+.refresh-btn:hover{border-color:var(--emerald);color:var(--emerald);}
+
+.toolbar{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+.filter-btn{padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:none;color:rgba(255,255,255,0.4);cursor:pointer;font-size:0.75rem;transition:all 0.2s;font-family:inherit;}
+.filter-btn:hover{border-color:var(--emerald);color:var(--emerald);}
+.filter-btn.active{background:rgba(77,212,153,0.1);border-color:var(--emerald);color:var(--emerald);}
+.search-input{padding:8px 14px;border-radius:8px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:white;font-size:0.8rem;outline:none;width:200px;font-family:inherit;}
+.search-input:focus{border-color:var(--emerald);}
+
+.empty-state{text-align:center;padding:60px 20px;color:rgba(255,255,255,0.2);}
+.empty-state i{font-size:3rem;margin-bottom:12px;}
+.empty-state p{font-size:0.85rem;}
+</style>
+</head>
+<body>
+
+<!-- Login -->
+<div id="loginScreen" class="login-screen">
+  <div class="box">
+    <div style="text-align:center;margin-bottom:8px;"><i class="ph ph-shield-check" style="font-size:2rem;color:var(--emerald);"></i></div>
+    <h2>管理后台</h2>
+    <input type="password" id="loginPassword" placeholder="输入管理密码" onkeydown="if(event.key==='Enter')doLogin()">
+    <button onclick="doLogin()">登录</button>
+    <div id="loginError" class="error"></div>
+  </div>
+</div>
+
+<!-- Admin App -->
+<div id="adminApp" style="display:none;">
+
+<aside class="sidebar">
+  <div class="logo"><img src="/logo.png" alt="晋谷云智" style="height:42px;width:auto;"></div>
+  <a href="#" class="active" data-page="dashboard" onclick="switchPage('dashboard',this)"><i class="ph ph-chart-bar"></i> 仪表盘</a>
+  <a href="#" data-page="submissions" onclick="switchPage('submissions',this)"><i class="ph ph-users"></i> 预约管理</a>
+  <a href="#" data-page="schedule" onclick="switchPage('schedule',this);loadSchedules()"><i class="ph ph-calendar"></i> 排期管理</a>
+  <a href="#" data-page="messages" onclick="switchPage('messages',this)"><i class="ph ph-envelope"></i> 留言管理</a>
+  <div class="spacer"></div>
+  <a href="#" class="logout" onclick="doLogout()"><i class="ph ph-sign-out"></i> 退出登录</a>
+</aside>
+
+<div class="main">
+
+<!-- Dashboard -->
+<div id="page-dashboard" class="page active">
+  <h1>仪表盘</h1>
+  <p class="sub">实时数据概览 · 自动每30秒刷新</p>
+  <div id="statsGrid" class="stats-grid"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span style="font-size:0.85rem;font-weight:600;">最近预约</span>
+        <i class="ph ph-users" style="color:var(--emerald);"></i>
+      </div>
+      <div id="latestSubmissions"><div class="empty-state"><p>暂无数据</p></div></div>
+    </div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span style="font-size:0.85rem;font-weight:600;">课程分布</span>
+        <i class="ph ph-pie-chart" style="color:var(--emerald);"></i>
+      </div>
+      <div id="courseDistribution"><div class="empty-state"><p>暂无数据</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Submissions -->
+<div id="page-submissions" class="page">
+  <h1>预约管理</h1>
+  <p class="sub">管理学员试听预约记录</p>
+  <div class="toolbar">
+    <input class="search-input" id="subSearch" placeholder="搜索姓名或手机号..." oninput="renderSubmissions()">
+    <span class="filter-btn active" data-filter="all" onclick="setFilter(this,'all')">全部</span>
+    <span class="filter-btn" data-filter="new" onclick="setFilter(this,'new')">新预约</span>
+    <span class="filter-btn" data-filter="contacted" onclick="setFilter(this,'contacted')">已联系</span>
+    <span class="filter-btn" data-filter="enrolled" onclick="setFilter(this,'enrolled')">已报名</span>
+    <button class="refresh-btn" onclick="loadSubmissions()"><i class="ph ph-arrow-clockwise"></i> 刷新</button>
+  </div>
+  <div class="card" style="overflow-x:auto;padding:0;">
+    <table>
+      <thead><tr><th>姓名</th><th>手机号</th><th>课程</th><th>留言</th><th>时间</th><th>状态</th><th>操作</th></tr></thead>
+      <tbody id="submissionsBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Messages -->
+<div id="page-messages" class="page">
+  <h1>留言管理</h1>
+  <p class="sub">访客留言咨询</p>
+  <div class="toolbar">
+    <button class="refresh-btn" onclick="loadMessages()"><i class="ph ph-arrow-clockwise"></i> 刷新</button>
+  </div>
+  <div class="card" style="overflow-x:auto;padding:0;">
+    <table>
+      <thead><tr><th>姓名</th><th>手机号</th><th>邮箱</th><th>留言内容</th><th>时间</th></tr></thead>
+      <tbody id="messagesBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Schedule Management -->
+<div id="page-schedule" class="page">
+  <h1>排期管理</h1>
+  <p class="sub">管理课程开课排期 · 修改后实时同步到排期日历页</p>
+  <div class="toolbar">
+    <button class="refresh-btn" onclick="loadSchedules()"><i class="ph ph-arrow-clockwise"></i> 刷新</button>
+    <button class="refresh-btn" onclick="openScheduleForm()" style="border-color:var(--emerald);color:var(--emerald);"><i class="ph ph-plus"></i> 添加排期</button>
+  </div>
+  <div class="card" style="overflow-x:auto;padding:0;">
+    <table>
+      <thead><tr><th>课程</th><th>班期名称</th><th>开始</th><th>结束</th><th>时长</th><th>价格</th><th>名额</th><th>时间</th><th>操作</th></tr></thead>
+      <tbody id="scheduleBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Schedule Form Modal -->
+<div id="scheduleModal" style="position:fixed;inset:0;z-index:9999;background:rgba(10,10,10,0.8);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;">
+  <div style="width:480px;max-width:90vw;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <h3 id="scheduleFormTitle" style="font-family:'Cabinet Grotesk','Noto Sans SC',sans-serif;font-size:1.1rem;font-weight:600;">添加排期</h3>
+      <button onclick="closeScheduleForm()" style="background:none;border:none;color:rgba(255,255,255,0.3);font-size:1.2rem;cursor:pointer;"><i class="ph ph-x"></i></button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div style="grid-column:1/-1;">
+        <label style="font-size:0.75rem;color:rgba(255,255,255,0.4);display:block;margin-bottom:4px;">课程类型</label>
+        <select id="sf-type" style="width:100%;padding:10px 12px;border-radius:8px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:white;font-size:0.85rem;font-family:inherit;outline:none;">
+          <option value="beginner">初级入门</option>
+          <option value="intermediate">中级进阶</option>
+          <option value="advanced">高级实战</option>
+        </select>
+      </div>
+      <div style="grid-column:1/-1;">
+        <label style="font-size:0.75rem;color:rgba(255,255,255,0.4);display:block;margin-bottom:4px;">班期名称</label>
+        <input id="sf-name" class="search-input" style="width:100%;" placeholder="例：初级入门班">
+      </div>
+      <div>
+        <label style="font-size:0.75rem;color:rgba(255,255,255,0.4);display:block;margin-bottom:4px;">开始日期</label>
+        <input id="sf-dateStr" type="date" class="search-input" style="width:100%;color-scheme:dark;">
+      </div>
+      <div>
+        <label style="font-size:0.75rem;color:rgba(255,255,255,0.4);display:block;margin-bottom:4px;">结束日期</label>
+        <input id="sf-endDate" type="date" class="search-input" style="width:100%;color-scheme:dark;">
+      </div>
+      <div>
+        <label style="font-size:0.75rem;color:rgba(255,255,255,0.4);display:block;margin-bottom:4px;">时长</label>
+        <input id="sf-duration" class="search-input" style="width:100%;" placeholder="3天 / 10天 / 6周">
+      </div>
+      <div>
+        <label style="font-size:0.75rem;color:rgba(255,255,255,0.4);display:block;margin-bottom:4px;">价格</label>
+        <input id="sf-price" class="search-input" style="width:100%;" placeholder="¥1,980">
+      </div>
+      <div>
+        <label style="font-size:0.75rem;color:rgba(255,255,255,0.4);display:block;margin-bottom:4px;">剩余名额</label>
+        <input id="sf-seats" type="number" class="search-input" style="width:100%;" placeholder="10">
+      </div>
+      <div>
+        <label style="font-size:0.75rem;color:rgba(255,255,255,0.4);display:block;margin-bottom:4px;">上课时间</label>
+        <input id="sf-time" class="search-input" style="width:100%;" placeholder="09:00-17:00">
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:20px;justify-content:flex-end;">
+      <button onclick="closeScheduleForm()" class="status-btn" style="padding:10px 20px;">取消</button>
+      <button onclick="saveScheduleForm()" style="padding:10px 24px;border-radius:8px;background:var(--emerald);color:#0A0A0A;font-weight:600;border:none;cursor:pointer;font-family:inherit;">保存</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- main -->
+</div><!-- adminApp -->
+
+<script>
+var token = localStorage.getItem('jgy_token') || '';
+var submissions = [], messages = [];
+var currentFilter = 'all';
+
+function api(path, opts) {
+  opts = opts || {};
+  return fetch('/api' + path, {
+    method: opts.method || 'GET',
+    headers: Object.assign({'Content-Type':'application/json'}, token ? {'Authorization':'Bearer '+token} : {}, opts.headers || {}),
+    body: opts.body ? JSON.stringify(opts.body) : undefined
+  }).then(function(r){ return r.json(); });
+}
+
+function doLogin() {
+  var pw = document.getElementById('loginPassword').value;
+  api('/auth/login', {method:'POST', body:{password:pw}}).then(function(res){
+    if(res.success) {
+      token = res.token;
+      localStorage.setItem('jgy_token', token);
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('adminApp').style.display = 'block';
+      loadDashboard(); loadSubmissions(); loadMessages();
+      setInterval(loadDashboard, 30000);
+    } else {
+      document.getElementById('loginError').textContent = '密码错误，请重试';
+    }
+  });
+}
+
+function doLogout() {
+  localStorage.removeItem('jgy_token');
+  token = '';
+  document.getElementById('adminApp').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('loginPassword').value = '';
+}
+
+// Check if already logged in
+if(token) {
+  api('/auth/verify').then(function(res){
+    if(res.valid) {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('adminApp').style.display = 'block';
+      loadDashboard(); loadSubmissions(); loadMessages();
+      setInterval(loadDashboard, 30000);
+    } else {
+      localStorage.removeItem('jgy_token');
+    }
+  });
+}
+
+function switchPage(name, el) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.sidebar a').forEach(function(a){ a.classList.remove('active'); });
+  document.getElementById('page-' + name).classList.add('active');
+  if(el) el.classList.add('active');
+  if(name === 'submissions') renderSubmissions();
+  if(name === 'messages') renderMessages();
+}
+
+function loadDashboard() {
+  api('/trial/stats').then(function(res){
+    if(!res.success) return;
+    var html = '';
+    var items = [
+      {icon:'ph-users-three', num:res.total||0, label:'总预约数'},
+      {icon:'ph-calendar-plus', num:res.today||0, label:'今日新预约'},
+      {icon:'ph-chart-donut', num:Object.keys(res.courses||{}).length||0, label:'课程分布'},
+      {icon:'ph-clock-countdown', num:'30s', label:'自动刷新'},
+    ];
+    items.forEach(function(item){
+      html += '<div class="card"><div class="icon-wrap"><i class="ph '+item.icon+'"></i></div><div class="num">'+item.num+'</div><div class="label">'+item.label+'</div></div>';
+    });
+    document.getElementById('statsGrid').innerHTML = html;
+
+    // Latest 5 submissions
+    api('/trial').then(function(sr){
+      if(!sr.success) return;
+      var latest = sr.data.slice(0,5);
+      var lhtml = '';
+      latest.forEach(function(s){
+        var statusClass = 'badge-'+s.status;
+        lhtml += '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.03);">';
+        lhtml += '<div><div style="font-size:0.85rem;">'+s.name+'</div><div style="font-size:0.7rem;color:rgba(255,255,255,0.3);">'+(s.course||'未指定')+'</div></div>';
+        lhtml += '<span class="badge '+statusClass+'">'+({new:'新预约',contacted:'已联系',enrolled:'已报名',closed:'已关闭'}[s.status]||s.status)+'</span></div>';
+      });
+      document.getElementById('latestSubmissions').innerHTML = latest.length ? lhtml : '<div class="empty-state"><p>暂无数据</p></div>';
+    });
+
+    // Course distribution
+    var courses = res.courses || {};
+    var courseLabels = {'初级入门':'初级','中级进阶':'中级','高级实战':'高级'};
+    var chhtml = '';
+    var total = res.total;
+    Object.keys(courses).forEach(function(k){
+      var pct = total > 0 ? Math.round(courses[k]/total*100) : 0;
+      chhtml += '<div style="margin-bottom:12px;"><div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:4px;"><span>'+ (courseLabels[k]||k) +'</span><span style="color:rgba(255,255,255,0.3);">'+courses[k]+'人 ('+pct+'%)</span></div><div style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;"><div style="height:100%;width:'+pct+'%;background:var(--emerald);border-radius:2px;"></div></div></div>';
+    });
+    document.getElementById('courseDistribution').innerHTML = chhtml || '<div class="empty-state"><p>暂无数据</p></div>';
+  });
+}
+
+function loadSubmissions() {
+  api('/trial').then(function(res){
+    if(res.success) { submissions = res.data; renderSubmissions(); }
+  });
+}
+
+function renderSubmissions() {
+  var q = (document.getElementById('subSearch').value || '').toLowerCase();
+  var filtered = submissions.filter(function(s){
+    if(currentFilter !== 'all' && s.status !== currentFilter) return false;
+    if(q && s.name.indexOf(q) === -1 && s.phone.indexOf(q) === -1) return false;
+    return true;
+  });
+  var html = '';
+  filtered.forEach(function(s){
+    var statusClass = 'badge-'+s.status;
+    var statusMap = {new:'新预约',contacted:'已联系',enrolled:'已报名',closed:'已关闭'};
+    var time = s.createdAt ? s.createdAt.slice(0,16).replace('T',' ') : '';
+    html += '<tr>';
+    html += '<td><strong>'+s.name+'</strong></td>';
+    html += '<td style="color:rgba(255,255,255,0.5);">'+s.phone+'</td>';
+    html += '<td>'+(s.course||'-')+'</td>';
+    html += '<td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:rgba(255,255,255,0.35);">'+(s.message||'-')+'</td>';
+    html += '<td style="color:rgba(255,255,255,0.35);font-size:0.75rem;">'+time+'</td>';
+    html += '<td><span class="badge '+statusClass+'">'+(statusMap[s.status]||s.status)+'</span></td>';
+    html += '<td><div style="display:flex;gap:4px;flex-wrap:wrap;">';
+    html += '<button class="status-btn'+(s.status==='new'?' active':'')+'" onclick="updateStatus(\''+s.id+'\',\'new\')">新</button>';
+    html += '<button class="status-btn'+(s.status==='contacted'?' active':'')+'" onclick="updateStatus(\''+s.id+'\',\'contacted\')">联系</button>';
+    html += '<button class="status-btn'+(s.status==='enrolled'?' active':'')+'" onclick="updateStatus(\''+s.id+'\',\'enrolled\')">报名</button>';
+    html += '<button class="status-btn'+(s.status==='closed'?' active':'')+'" onclick="updateStatus(\''+s.id+'\',\'closed\')">关闭</button>';
+    html += '</div></td></tr>';
+  });
+  document.getElementById('submissionsBody').innerHTML = html || '<tr><td colspan="7"><div class="empty-state"><i class="ph ph-database"></i><p>没有匹配的记录</p></div></td></tr>';
+}
+
+function updateStatus(id, status) {
+  api('/trial/'+id+'/status', {method:'PATCH', body:{status:status}}).then(function(res){
+    if(res.success) loadSubmissions();
+  });
+}
+
+function setFilter(el, filter) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  el.classList.add('active');
+  renderSubmissions();
+}
+
+function loadMessages() {
+  api('/contact').then(function(res){
+    if(res.success) { messages = res.data; renderMessages(); }
+  });
+}
+
+function renderMessages() {
+  var html = '';
+  messages.forEach(function(m){
+    var time = m.createdAt ? m.createdAt.slice(0,16).replace('T',' ') : '';
+    html += '<tr>';
+    html += '<td><strong>'+m.name+'</strong></td>';
+    html += '<td style="color:rgba(255,255,255,0.5);">'+(m.phone||'-')+'</td>';
+    html += '<td style="color:rgba(255,255,255,0.5);">'+(m.email||'-')+'</td>';
+    html += '<td style="max-width:300px;color:rgba(255,255,255,0.5);">'+(m.message||'')+'</td>';
+    html += '<td style="color:rgba(255,255,255,0.35);font-size:0.75rem;">'+time+'</td>';
+    html += '</tr>';
+  });
+  document.getElementById('messagesBody').innerHTML = html || '<tr><td colspan="5"><div class="empty-state"><i class="ph ph-database"></i><p>暂无留言</p></div></td></tr>';
+}
+var schedules = [];
+var editingScheduleId = null;
+
+function loadSchedules() {
+  api('/schedule').then(function(res){
+    if(res.success) { schedules = res.data; renderSchedules(); }
+  });
+}
+
+function renderSchedules() {
+  var typeLabels = {beginner:'初级入门', intermediate:'中级进阶', advanced:'高级实战'};
+  var typeColors = {beginner:'#4DD499', intermediate:'#f0b400', advanced:'#a855f7'};
+  var html = '';
+  schedules.forEach(function(s){
+    var color = typeColors[s.type] || 'var(--emerald)';
+    html += '<tr>';
+    html += '<td><span style="display:inline-block;padding:2px 10px;border-radius:12px;background:'+color+'20;color:'+color+';font-size:0.7rem;font-weight:500;">'+(typeLabels[s.type]||s.label||s.type)+'</span></td>';
+    html += '<td><strong>'+s.name+'</strong></td>';
+    html += '<td style="color:rgba(255,255,255,0.5);font-size:0.75rem;">'+s.dateStr+'</td>';
+    html += '<td style="color:rgba(255,255,255,0.5);font-size:0.75rem;">'+s.endDate+'</td>';
+    html += '<td>'+s.duration+'</td>';
+    html += '<td>'+s.price+'</td>';
+    html += '<td><span style="color:'+(s.seats<=5?'#ef4444':'var(--emerald)')+'">'+s.seats+'</span></td>';
+    html += '<td style="color:rgba(255,255,255,0.5);font-size:0.75rem;">'+s.time+'</td>';
+    html += '<td><div style="display:flex;gap:4px;">';
+    html += '<button class="status-btn" onclick="editSchedule(\''+s.id+'\')">编辑</button>';
+    html += '<button class="status-btn" onclick="deleteSchedule(\''+s.id+'\')" style="color:#ef4444;">删除</button>';
+    html += '</div></td></tr>';
+  });
+  document.getElementById('scheduleBody').innerHTML = html || '<tr><td colspan="9"><div class="empty-state"><i class="ph ph-calendar-blank"></i><p>暂无排期数据</p></div></td></tr>';
+}
+
+function openScheduleForm(data) {
+  editingScheduleId = null;
+  document.getElementById('scheduleFormTitle').textContent = '添加排期';
+  document.getElementById('sf-type').value = 'beginner';
+  document.getElementById('sf-name').value = '';
+  document.getElementById('sf-dateStr').value = '';
+  document.getElementById('sf-endDate').value = '';
+  document.getElementById('sf-duration').value = '';
+  document.getElementById('sf-price').value = '';
+  document.getElementById('sf-seats').value = '';
+  document.getElementById('sf-time').value = '09:00-17:00';
+  if(data) {
+    editingScheduleId = data.id;
+    document.getElementById('scheduleFormTitle').textContent = '编辑排期';
+    document.getElementById('sf-type').value = data.type;
+    document.getElementById('sf-name').value = data.name;
+    document.getElementById('sf-dateStr').value = data.dateStr;
+    document.getElementById('sf-endDate').value = data.endDate;
+    document.getElementById('sf-duration').value = data.duration;
+    document.getElementById('sf-price').value = data.price;
+    document.getElementById('sf-seats').value = data.seats;
+    document.getElementById('sf-time').value = data.time;
+  }
+  document.getElementById('scheduleModal').style.display = 'flex';
+}
+
+function closeScheduleForm() {
+  document.getElementById('scheduleModal').style.display = 'none';
+}
+
+function saveScheduleForm() {
+  var body = {
+    type: document.getElementById('sf-type').value,
+    label: {beginner:'初级',intermediate:'中级',advanced:'高级'}[document.getElementById('sf-type').value],
+    name: document.getElementById('sf-name').value,
+    dateStr: document.getElementById('sf-dateStr').value,
+    endDate: document.getElementById('sf-endDate').value,
+    duration: document.getElementById('sf-duration').value,
+    price: document.getElementById('sf-price').value,
+    seats: parseInt(document.getElementById('sf-seats').value) || 0,
+    time: document.getElementById('sf-time').value
+  };
+  if(!body.name || !body.dateStr || !body.endDate) { alert('请填写名称、开始日期和结束日期'); return; }
+  var method = editingScheduleId ? 'PUT' : 'POST';
+  var url = editingScheduleId ? '/schedule/'+editingScheduleId : '/schedule';
+  api(url, {method:method, body:body}).then(function(res){
+    if(res.success) { closeScheduleForm(); loadSchedules(); }
+    else { alert(res.message || '操作失败'); }
+  });
+}
+
+function editSchedule(id) {
+  var s = schedules.find(function(e){ return e.id === id; });
+  if(s) openScheduleForm(s);
+}
+
+function deleteSchedule(id) {
+  if(!confirm('确认删除此排期？')) return;
+  api('/schedule/'+id, {method:'DELETE'}).then(function(res){
+    if(res.success) loadSchedules();
+  });
+}
+</script>
+</body>
+</html>

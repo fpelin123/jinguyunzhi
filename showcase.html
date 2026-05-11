@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学员作品展示 — 晋谷云智 AIGC 实战培训</title>
+<meta name="description" content="晋谷云智学员 AIGC 作品展示。AI漫剧、三维动画、视觉特效，来自大同本地培训的真实产出。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%234DD499'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' font-family='sans-serif' fill='%230A0A0A' font-weight='bold'%3E晋%3C/text%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #0A0A0A; --surface: rgba(10,10,10,0.7);
+  --emerald: #4DD499; --emerald-soft: rgba(77,212,153,0.3);
+  --emerald-glow: rgba(77,212,153,0.5);
+  --silver: #C0C4C8; --white: #F5F5F5;
+  --glass-bg: rgba(255,255,255,0.035);
+  --glass-border: rgba(255,255,255,0.06);
+  --glass-border-strong: rgba(255,255,255,0.1);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--white);
+  font-family: 'Noto Sans SC', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: 'Cabinet Grotesk', 'Noto Sans SC', sans-serif;
+  font-weight: 700; letter-spacing: -0.03em;
+}
+.grain-overlay {
+  position: fixed; inset:0; z-index:100;
+  pointer-events: none; opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+.mesh-bg {
+  position: fixed; inset:0;
+  pointer-events: none; z-index:0;
+  overflow: hidden;
+}
+.mesh-bg .orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(100px); opacity: 0.3;
+}
+.mesh-bg .orb-1 { width:700px;height:700px;background:radial-gradient(circle,rgba(77,212,153,0.5),rgba(18,90,68,0.15));top:-250px;right:-100px;animation:orbFloat1 24s ease-in-out infinite;}
+.mesh-bg .orb-2 { width:550px;height:550px;background:radial-gradient(circle,rgba(0,150,136,0.25),rgba(0,100,90,0.08));bottom:20%;left:-200px;animation:orbFloat2 28s ease-in-out infinite;}
+.mesh-bg .orb-3 { width:450px;height:450px;background:radial-gradient(circle,rgba(77,212,153,0.2),transparent);top:45%;right:-150px;animation:orbFloat3 20s ease-in-out infinite;}
+.mesh-bg .orb-4 { width:350px;height:350px;background:radial-gradient(circle,rgba(0,200,180,0.15),transparent);bottom:-100px;right:25%;animation:orbFloat1 26s ease-in-out infinite reverse;}
+@keyframes orbFloat1 {0%,100%{transform:translate(0,0)scale(1)}33%{transform:translate(80px,-50px)scale(1.12)}66%{transform:translate(-40px,50px)scale(0.92)}}
+@keyframes orbFloat2 {0%,100%{transform:translate(0,0)scale(1)}50%{transform:translate(-60px,70px)scale(1.18)}}
+@keyframes orbFloat3 {0%,100%{transform:translate(0,0)scale(1)}50%{transform:translate(50px,-40px)scale(1.08)}}
+.glass {background:var(--glass-bg);backdrop-filter:blur(24px)saturate(1.4);-webkit-backdrop-filter:blur(24px)saturate(1.4);border:1px solid var(--glass-border);border-radius:16px;box-shadow:0 4px 32px rgba(0,0,0,0.4);}
+.glass-strong {background:rgba(255,255,255,0.055);backdrop-filter:blur(32px)saturate(1.6);border:1px solid var(--glass-border-strong);border-radius:24px;box-shadow:0 8px 48px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.08);}
+.section-label {font-family:'Cabinet Grotesk',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--emerald);opacity:0.7;}
+.section-title {font-size:clamp(1.6rem,3.2vw,2.8rem);font-weight:800;letter-spacing:-0.04em;line-height:1.15;}
+.btn-glow {display:inline-flex;align-items:center;gap:12px;padding:16px 36px;background:var(--emerald);color:#0A0A0A;font-family:'Cabinet Grotesk','Noto Sans SC',sans-serif;font-weight:600;font-size:1.05rem;border:none;border-radius:40px;cursor:pointer;transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);text-decoration:none;}
+.btn-glow:hover {transform:translateY(-2px) scale(1.03);}
+.btn-outline {display:inline-flex;align-items:center;gap:10px;padding:12px 24px;background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.1);border-radius:40px;font-family:'Cabinet Grotesk','Noto Sans SC',sans-serif;font-weight:500;font-size:0.9rem;cursor:pointer;text-decoration:none;transition:all 0.35s cubic-bezier(0.22,1,0.36,1);}
+.btn-outline:hover {border-color:var(--emerald);color:var(--emerald);background:rgba(77,212,153,0.06);transform:translateY(-1px);}
+.reveal {opacity:0;transform:translateY(40px) scale(0.98);filter:blur(4px);transition:opacity 0.9s cubic-bezier(0.22,1,0.36,1),transform 0.9s cubic-bezier(0.22,1,0.36,1),filter 0.9s cubic-bezier(0.22,1,0.36,1);}
+.reveal.visible {opacity:1;transform:translateY(0) scale(1);filter:blur(0);}
+.reveal-delay-1 {transition-delay:0.08s;}
+.reveal-delay-2 {transition-delay:0.16s;}
+.reveal-delay-3 {transition-delay:0.24s;}
+.reveal-delay-4 {transition-delay:0.32s;}
+.reveal-delay-5 {transition-delay:0.40s;}
+
+/* Filter bar */
+.filter-btn {font-family:'Cabinet Grotesk','Noto Sans SC',sans-serif;font-size:0.8rem;font-weight:500;padding:8px 18px;border-radius:40px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.3s ease;}
+.filter-btn:hover {border-color:rgba(77,212,153,0.2);color:var(--white);}
+.filter-btn.active {background:rgba(77,212,153,0.1);border-color:rgba(77,212,153,0.2);color:var(--emerald);}
+
+/* Showcase item */
+.showcase-item {
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
+  overflow: hidden;
+}
+.showcase-item:hover {
+  transform: translateY(-6px);
+  border-color: rgba(77,212,153,0.2);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 40px rgba(77,212,153,0.04);
+}
+.showcase-item .showcase-img {
+  transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.showcase-item:hover .showcase-img { transform: scale(1.05); }
+.showcase-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(10,10,10,0.9));
+  padding: 32px 20px 16px;
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed; inset:0; z-index:99999;
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(16px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s ease;
+  padding: 24px;
+}
+.lightbox.open { opacity: 1; pointer-events: auto; }
+.lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 16px; box-shadow: 0 24px 80px rgba(0,0,0,0.8); }
+.lightbox-close {
+  position: absolute; top: 24px; right: 24px;
+  width: 48px; height: 48px;
+  border-radius: 50%; background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: white; font-size: 1.4rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.3s ease;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.1); transform: rotate(90deg); }
+.lightbox-info {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  text-align: center; color: rgba(255,255,255,0.6); font-size: 0.85rem;
+  max-width: 600px;
+}
+.sticky-phone {display:none;position:fixed;bottom:24px;left:24px;z-index:9997;background:rgba(10,10,10,0.85);backdrop-filter:blur(12px);border:1px solid rgba(77,212,153,0.15);border-radius:40px;padding:10px 20px;color:var(--emerald);text-decoration:none;font-size:0.85rem;font-weight:600;box-shadow:0 4px 24px rgba(0,0,0,0.5);align-items:center;gap:8px;transition:all 0.3s ease;animation:phonePulse 2s ease-in-out infinite;}
+.sticky-phone:hover{border-color:var(--emerald);transform:translateY(-2px);}
+@keyframes phonePulse{0%,100%{box-shadow:0 4px 24px rgba(0,0,0,0.5)}50%{box-shadow:0 4px 24px rgba(0,0,0,0.5),0 0 20px rgba(77,212,153,0.15)}}
+@media(max-width:768px){.sticky-phone{display:flex;}}
+.scroll-progress{position:fixed;top:0;left:0;z-index:99999;width:0%;height:2px;background:linear-gradient(90deg,var(--emerald),rgba(77,212,153,0.3));transition:width 0.1s linear;pointer-events:none;}
+.back-to-top{position:fixed;bottom:32px;right:32px;z-index:9998;width:48px;height:48px;border-radius:50%;background:rgba(10,10,10,0.75);backdrop-filter:blur(8px);border:1px solid rgba(77,212,153,0.2);color:var(--emerald);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity 0.4s ease,transform 0.4s cubic-bezier(0.22,1,0.36,1);box-shadow:0 4px 20px rgba(0,0,0,0.4);}
+.back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:auto;}
+.back-to-top:hover{border-color:rgba(77,212,153,0.5);transform:translateY(-3px);}
+@media(max-width:768px){.back-to-top{bottom:20px;right:20px;width:42px;height:42px;}}
+/* Nav bar */
+.nav-bar{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:rgba(10,10,10,0.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.04);}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Cabinet Grotesk','Noto Sans SC',sans-serif;font-weight:800;font-size:1.1rem;color:#F5F5F5;text-decoration:none;display:flex;align-items:center;gap:8px;}
+.nav-logo-img { height: 42px; width: auto; display: block; }
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-bar.scrolled{box-shadow:0 4px 20px rgba(0,0,0,0.3);}
+</style>
+</head>
+<body>
+<div class="grain-overlay" aria-hidden="true"></div>
+<div class="mesh-bg" aria-hidden="true">
+  <div class="orb orb-1"></div><div class="orb orb-2"></div>
+  <div class="orb orb-3"></div><div class="orb orb-4"></div>
+</div>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- NAV -->
+<nav class="nav-bar" id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><img src="/logo.png" alt="晋谷云智" class="nav-logo-img"></a>
+    <div class="nav-links">
+      <a href="/#courses">课程</a>
+      <a href="/showcase.html">作品</a>
+      <a href="/teachers.html">师资</a>
+      <a href="/schedule.html">排期</a>
+      <a href="/#trial" class="btn-outline" style="padding:8px 18px;">免费试听</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative pt-28 pb-10 lg:pt-36 lg:pb-14">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 text-center reveal">
+    <span class="section-label">学员作品</span>
+    <h1 class="section-title mt-3">眼见为实<br>学员亲手创作的 AIGC 作品</h1>
+    <p class="text-sm text-[rgba(255,255,255,0.4)] mt-4 max-w-xl mx-auto leading-relaxed">每一幅作品都来自晋谷云智学员的真实产出。从零基础到独立创作，只差一期课程的距离。</p>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<section class="relative pb-8">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex flex-wrap items-center justify-center gap-2 reveal" id="filterBar">
+      <button class="filter-btn active" data-filter="all">全部作品</button>
+      <button class="filter-btn" data-filter="wuxia">武侠仙侠</button>
+      <button class="filter-btn" data-filter="sci-fi">科幻机甲</button>
+      <button class="filter-btn" data-filter="fantasy">奇幻异界</button>
+      <button class="filter-btn" data-filter="cyberpunk">赛博朋克</button>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE GRID -->
+<section id="showcase" class="relative pb-16">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-5" id="showcaseGrid">
+      <!-- Items injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="relative pb-20">
+  <div class="max-w-4xl mx-auto px-6 lg:px-10 text-center reveal">
+    <div class="glass-strong p-10 lg:p-14">
+      <h2 class="section-title">你也能做出这样的作品</h2>
+      <p class="text-sm text-[rgba(255,255,255,0.4)] mt-4 max-w-lg mx-auto leading-relaxed">零基础？别担心。大部分学员入学前从未接触过 AI 工具。<br>15 天中级课程，从入门到独立创作。</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+        <a href="/#trial" class="btn-glow">预约免费试听 <span class="btn-icon-ring"><i class="ph ph-arrow-right"></i></span></a>
+        <a href="/course-intermediate.html" class="btn-outline">了解课程详情</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="relative pt-12 pb-10 border-t border-[rgba(255,255,255,0.03)]">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 rounded-lg bg-[var(--emerald)] flex items-center justify-center">
+          <i class="ph ph-brain text-black text-sm"></i>
+        </div>
+        <span class="font-display text-base font-bold">晋谷云智</span>
+      </div>
+      <p class="text-xs text-[rgba(255,255,255,0.18)]">&copy; 2026 晋谷云智 &middot; 山西晋谷云智教育科技有限公司</p>
+      <div class="flex items-center gap-4 text-xs text-[rgba(255,255,255,0.18)]">
+        <a href="/teachers.html" class="hover:text-white transition-colors">师资团队</a>
+        <span>咨询电话：173 1905 9750</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a href="tel:17319059750" class="sticky-phone"><i class="ph ph-phone"></i> 致电咨询</a>
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ph ph-arrow-up"></i></button>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()"><i class="ph ph-x"></i></button>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-info" id="lightboxInfo"></div>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+const works = [
+  {img:'/showcase_images/showcase_01.png',title:'云巅独步',author:'初级 · 张同学',category:'wuxia',tools:'Midjourney + ComfyUI'},
+  {img:'/showcase_images/showcase_02.png',title:'灵源觉醒',author:'中级 · 李同学',category:'wuxia',tools:'ComfyUI + Sora'},
+  {img:'/showcase_images/showcase_03.png',title:'赛博大同2049',author:'中级 · 王同学',category:'cyberpunk',tools:'Midjourney + After Effects'},
+  {img:'/showcase_images/showcase_04.png',title:'钢铁苍穹',author:'高级 · 陈同学',category:'sci-fi',tools:'ComfyUI + Blender'},
+  {img:'/showcase_images/showcase_05.png',title:'天宫盛景',author:'初级 · 刘同学',category:'wuxia',tools:'Midjourney'},
+  {img:'/showcase_images/showcase_06.png',title:'竹林惊鸿',author:'中级 · 赵同学',category:'wuxia',tools:'DALL·E + ComfyUI'},
+  {img:'/showcase_images/showcase_07.png',title:'灵域幻境',author:'高级 · 孙同学',category:'fantasy',tools:'ComfyUI + Runway'},
+  {img:'/showcase_images/showcase_08.png',title:'未来战士',author:'高级 · 周同学',category:'sci-fi',tools:'Midjourney + Premiere Pro'},
+];
+
+function getImagePath(index) {
+  const imgDir = '/showcase_images';
+  const patterns = ['jpg','png','jpeg','webp'];
+  return imgDir + '/showcase_' + String(index).padStart(2,'0') + '.png';
+}
+
+function initShowcase() {
+  const grid = document.getElementById('showcaseGrid');
+  if (!grid) return;
+
+  if (works.length === 0) {
+    grid.innerHTML = '<div class="col-span-full text-center py-20"><div class="text-4xl mb-4"><i class="ph ph-images text-[rgba(255,255,255,0.1)]"></i></div><p class="text-sm text-[rgba(255,255,255,0.3)]">作品图片正在生成中... 请稍后刷新页面查看</p></div>';
+    return;
+  }
+
+  renderWorks('all');
+}
+
+function renderWorks(filter) {
+  const grid = document.getElementById('showcaseGrid');
+  const filtered = filter === 'all' ? works : works.filter(w => w.category === filter);
+
+  grid.innerHTML = filtered.map((w, i) => {
+    const delay = (i % 4) * 0.08;
+    return '<div class="showcase-item glass rounded-2xl border border-[rgba(255,255,255,0.04)] reveal" style="transition-delay:' + delay + 's" data-category="' + w.category + '" onclick="openLightbox(\'' + w.img + '\',\'' + w.title + '\',\'' + w.author + '\',\'' + w.tools + '\')">' +
+      '<div class="relative" style="aspect-ratio:16/9;overflow:hidden;border-radius:16px;">' +
+        '<img src="' + w.img + '" alt="' + w.title + '" loading="lazy" class="showcase-img" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML=\'<div style=\\\'display:flex;align-items:center;justify-content:center;height:100%;background:rgba(255,255,255,0.02);color:rgba(255,255,255,0.15);font-size:0.75rem;\\\'><i class=\\\'ph ph-image\\\' style=\\\'font-size:2rem;opacity:0.3;\\\'></i></div>\'">' +
+        '<div class="showcase-overlay">' +
+          '<div class="text-sm font-medium font-display">' + w.title + '</div>' +
+          '<div class="text-xs text-[rgba(255,255,255,0.4)] mt-0.5">' + w.author + '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+
+  // Trigger reveal
+  requestAnimationFrame(() => {
+    grid.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  });
+}
+
+// Filter
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    renderWorks(this.dataset.filter);
+  });
+});
+
+// Lightbox
+window.openLightbox = function(img, title, author, tools) {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lightboxImg').src = img;
+  document.getElementById('lightboxInfo').textContent = title + ' · ' + author + ' · ' + tools;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+window.closeLightbox = function() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+};
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { closeLightbox(); }
+});
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+revealEls.forEach(el => observer.observe(el));
+
+// Progress + back to top
+const progressBar = document.getElementById('scrollProgress');
+const backBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0%';
+  backBtn.classList.toggle('visible', window.scrollY > 300);
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+// Store works data for later injection
+window.showcaseWorks = works;
+window.updateShowcaseWorks = function(newWorks) {
+  works.length = 0;
+  newWorks.forEach(w => works.push(w));
+  initShowcase();
+};
+
+initShowcase();
+})();
+</script>
+</body>
+</html>
