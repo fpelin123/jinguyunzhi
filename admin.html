@@ -217,7 +217,7 @@ tr:hover{background:rgba(255,255,255,0.01);}
       </div>
       <div>
         <label style="font-size:0.75rem;color:rgba(255,255,255,0.4);display:block;margin-bottom:4px;">价格</label>
-        <input id="sf-price" class="search-input" style="width:100%;" placeholder="¥1,980">
+        <input id="sf-price" class="search-input" style="width:100%;" placeholder="¥1,680">
       </div>
       <div>
         <label style="font-size:0.75rem;color:rgba(255,255,255,0.4);display:block;margin-bottom:4px;">剩余名额</label>
@@ -322,7 +322,7 @@ function loadDashboard() {
       latest.forEach(function(s){
         var statusClass = 'badge-'+s.status;
         lhtml += '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.03);">';
-        lhtml += '<div><div style="font-size:0.85rem;">'+s.name+'</div><div style="font-size:0.7rem;color:rgba(255,255,255,0.3);">'+(s.course||'未指定')+'</div></div>';
+        lhtml += '<div><div style="font-size:0.85rem;">'+s.name+'</div><div style="font-size:0.7rem;color:rgba(255,255,255,0.3);">'+(courseLabels[s.course]||s.course||'未指定')+'</div></div>';
         lhtml += '<span class="badge '+statusClass+'">'+({new:'新预约',contacted:'已联系',enrolled:'已报名',closed:'已关闭'}[s.status]||s.status)+'</span></div>';
       });
       document.getElementById('latestSubmissions').innerHTML = latest.length ? lhtml : '<div class="empty-state"><p>暂无数据</p></div>';
@@ -330,7 +330,14 @@ function loadDashboard() {
 
     // Course distribution
     var courses = res.courses || {};
-    var courseLabels = {'初级入门':'初级','中级进阶':'中级','高级实战':'高级'};
+    var courseLabels = {'初级入门':'初级','中级进阶':'中级','高级实战':'高级','beginner':'初级','intermediate':'中级','advanced':'高级'};
+    // Convert UTC to Beijing time
+    function toBeijingTime(isoStr) {
+      if(!isoStr) return '';
+      var d = new Date(isoStr);
+      d.setHours(d.getHours() + 8);
+      return d.toISOString().slice(0,16).replace('T',' ');
+    }
     var chhtml = '';
     var total = res.total;
     Object.keys(courses).forEach(function(k){
@@ -358,11 +365,11 @@ function renderSubmissions() {
   filtered.forEach(function(s){
     var statusClass = 'badge-'+s.status;
     var statusMap = {new:'新预约',contacted:'已联系',enrolled:'已报名',closed:'已关闭'};
-    var time = s.createdAt ? s.createdAt.slice(0,16).replace('T',' ') : '';
+    var time = toBeijingTime(s.createdAt);
     html += '<tr>';
     html += '<td><strong>'+s.name+'</strong></td>';
     html += '<td style="color:rgba(255,255,255,0.5);">'+s.phone+'</td>';
-    html += '<td>'+(s.course||'-')+'</td>';
+    html += '<td>'+(courseLabels[s.course]||s.course||'-')+'</td>';
     html += '<td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:rgba(255,255,255,0.35);">'+(s.message||'-')+'</td>';
     html += '<td style="color:rgba(255,255,255,0.35);font-size:0.75rem;">'+time+'</td>';
     html += '<td><span class="badge '+statusClass+'">'+(statusMap[s.status]||s.status)+'</span></td>';
@@ -398,7 +405,7 @@ function loadMessages() {
 function renderMessages() {
   var html = '';
   messages.forEach(function(m){
-    var time = m.createdAt ? m.createdAt.slice(0,16).replace('T',' ') : '';
+    var time = toBeijingTime(m.createdAt);
     html += '<tr>';
     html += '<td><strong>'+m.name+'</strong></td>';
     html += '<td style="color:rgba(255,255,255,0.5);">'+(m.phone||'-')+'</td>';

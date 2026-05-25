@@ -6,3 +6,5 @@ hero_gallery/
 api/node_modules/
 api/api.log
 # api/messages.json — removed from ignore, tracked as data file
+# Generated images (teacher avatars) - too large for git
+images/

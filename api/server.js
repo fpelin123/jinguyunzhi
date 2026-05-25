@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = 3001;
+const PORT = 3004;
 const DATA_FILE = path.join(__dirname, 'submissions.json');
 const MSG_FILE = path.join(__dirname, 'messages.json');
 const SCHEDULE_FILE = path.join(__dirname, 'schedule.json');
@@ -21,19 +21,19 @@ if (!fs.existsSync(MSG_FILE)) {
 }
 if (!fs.existsSync(SCHEDULE_FILE)) {
   const defaultSchedules = [
-    {id:'b1', type:'beginner', label:'初级', name:'初级入门班', dateStr:'2026-5-25', endDate:'2026-5-27', duration:'3天', price:'¥1,980', seats:8, time:'09:00-17:00'},
-    {id:'b2', type:'beginner', label:'初级', name:'初级入门班', dateStr:'2026-6-8', endDate:'2026-6-10', duration:'3天', price:'¥1,980', seats:12, time:'09:00-17:00'},
-    {id:'b3', type:'beginner', label:'初级', name:'初级入门班', dateStr:'2026-6-22', endDate:'2026-6-24', duration:'3天', price:'¥1,980', seats:10, time:'09:00-17:00'},
-    {id:'b4', type:'beginner', label:'初级', name:'初级入门班', dateStr:'2026-7-13', endDate:'2026-7-15', duration:'3天', price:'¥1,980', seats:14, time:'09:00-17:00'},
-    {id:'b5', type:'beginner', label:'初级', name:'初级入门班', dateStr:'2026-8-3', endDate:'2026-8-5', duration:'3天', price:'¥1,980', seats:10, time:'09:00-17:00'},
-    {id:'b6', type:'beginner', label:'初级', name:'初级入门班', dateStr:'2026-9-14', endDate:'2026-9-16', duration:'3天', price:'¥1,980', seats:15, time:'09:00-17:00'},
-    {id:'i1', type:'intermediate', label:'中级', name:'中级进阶班', dateStr:'2026-6-1', endDate:'2026-6-12', duration:'10天', price:'¥3,680', seats:6, time:'09:00-17:00'},
-    {id:'i2', type:'intermediate', label:'中级', name:'中级进阶班', dateStr:'2026-7-20', endDate:'2026-7-31', duration:'10天', price:'¥3,680', seats:10, time:'09:00-17:00'},
-    {id:'i3', type:'intermediate', label:'中级', name:'中级进阶班', dateStr:'2026-9-7', endDate:'2026-9-18', duration:'10天', price:'¥3,680', seats:12, time:'09:00-17:00'},
-    {id:'i4', type:'intermediate', label:'中级', name:'中级进阶班', dateStr:'2026-11-2', endDate:'2026-11-13', duration:'10天', price:'¥3,680', seats:14, time:'09:00-17:00'},
-    {id:'a1', type:'advanced', label:'高级', name:'高级全栈实战班', dateStr:'2026-5-25', endDate:'2026-7-4', duration:'6周', price:'¥6,880', seats:4, time:'09:00-17:00'},
-    {id:'a2', type:'advanced', label:'高级', name:'高级全栈实战班', dateStr:'2026-8-17', endDate:'2026-9-26', duration:'6周', price:'¥6,880', seats:8, time:'09:00-17:00'},
-    {id:'a3', type:'advanced', label:'高级', name:'高级全栈实战班', dateStr:'2026-11-9', endDate:'2026-12-19', duration:'6周', price:'¥6,880', seats:10, time:'09:00-17:00'}
+    {id:'b1', type:'beginner', label:'初级', name:'初级入门班', dateStr:'2026-5-25', endDate:'2026-5-27', duration:'3天', price:'¥1,680', seats:8, time:'09:00-17:00'},
+    {id:'b2', type:'beginner', label:'初级', name:'初级入门班', dateStr:'2026-6-8', endDate:'2026-6-10', duration:'3天', price:'¥1,680', seats:12, time:'09:00-17:00'},
+    {id:'b3', type:'beginner', label:'初级', name:'初级入门班', dateStr:'2026-6-22', endDate:'2026-6-24', duration:'3天', price:'¥1,680', seats:10, time:'09:00-17:00'},
+    {id:'b4', type:'beginner', label:'初级', name:'初级入门班', dateStr:'2026-7-13', endDate:'2026-7-15', duration:'3天', price:'¥1,680', seats:14, time:'09:00-17:00'},
+    {id:'b5', type:'beginner', label:'初级', name:'初级入门班', dateStr:'2026-8-3', endDate:'2026-8-5', duration:'3天', price:'¥1,680', seats:10, time:'09:00-17:00'},
+    {id:'b6', type:'beginner', label:'初级', name:'初级入门班', dateStr:'2026-9-14', endDate:'2026-9-16', duration:'3天', price:'¥1,680', seats:15, time:'09:00-17:00'},
+    {id:'i1', type:'intermediate', label:'中级', name:'中级进阶班', dateStr:'2026-6-1', endDate:'2026-6-12', duration:'10天', price:'¥3,980', seats:6, time:'09:00-17:00'},
+    {id:'i2', type:'intermediate', label:'中级', name:'中级进阶班', dateStr:'2026-7-20', endDate:'2026-7-31', duration:'10天', price:'¥3,980', seats:10, time:'09:00-17:00'},
+    {id:'i3', type:'intermediate', label:'中级', name:'中级进阶班', dateStr:'2026-9-7', endDate:'2026-9-18', duration:'10天', price:'¥3,980', seats:12, time:'09:00-17:00'},
+    {id:'i4', type:'intermediate', label:'中级', name:'中级进阶班', dateStr:'2026-11-2', endDate:'2026-11-13', duration:'10天', price:'¥3,980', seats:14, time:'09:00-17:00'},
+    {id:'a1', type:'advanced', label:'高级', name:'高级全栈实战班', dateStr:'2026-5-25', endDate:'2026-7-4', duration:'6周', price:'¥29,800', seats:4, time:'09:00-17:00'},
+    {id:'a2', type:'advanced', label:'高级', name:'高级全栈实战班', dateStr:'2026-8-17', endDate:'2026-9-26', duration:'6周', price:'¥29,800', seats:8, time:'09:00-17:00'},
+    {id:'a3', type:'advanced', label:'高级', name:'高级全栈实战班', dateStr:'2026-11-9', endDate:'2026-12-19', duration:'6周', price:'¥29,800', seats:10, time:'09:00-17:00'}
   ];
   fs.writeFileSync(SCHEDULE_FILE, JSON.stringify(defaultSchedules, null, 2), 'utf-8');
 }
